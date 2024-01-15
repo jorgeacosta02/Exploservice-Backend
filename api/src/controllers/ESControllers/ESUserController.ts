@@ -9,7 +9,7 @@ const ESCreateToken = (user: IUser) => {
     });
 };
 
-export const ESsignUp = async (req: Request, res: Response) => {
+export const ESSignUp = async (req: Request, res: Response) => {
     if(!req.body.email || !req.body.password){
         return res.status(400).json({msg: 'Por favor envíe su correo y contraseña.'});
     }
