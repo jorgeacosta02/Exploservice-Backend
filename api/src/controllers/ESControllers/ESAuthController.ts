@@ -31,8 +31,7 @@ export const ESSignUp = async (req: Request, res: Response) => {
         const savedUser = await newUser.save();
         // Creo un token para el usuario usando la función de libs/jwt
         const token = await ESCreateToken(savedUser);
-
-        // Coloco una cookie en la respuesta
+        // Coloco una cookie con el token en la respuesta
         res.cookie('token', token);
         // Envío la respuesta de éxito al cliente
         res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
@@ -43,19 +42,32 @@ export const ESSignUp = async (req: Request, res: Response) => {
 }
 
 export const ESLogIn = async (req: Request, res: Response) => {
-    if(!req.body.email || !req.body.password){
+    // Destructuro los datos de la request
+    const {email, password} = req.body;
+    // Veirifico que estén todos los datos necesarios
+    if(!email || !password){
         return res.status(400).json({msg: 'Por favor envíe su correo y contraseña.'});
     };
 
-    const user = await ESUser.findOne({email: req.body.email});
-    if(!user){
-        return res.status(404).json({msg: 'El usuario no existe.'});
-    };
-
-    const isMatch = await user.comparePassword(req.body.password);
-    // if(isMatch){
-    //     return res.status(200).json({token: ESCreateToken(user)});
-    // };
-
-    return res.status(400).json({msg: 'El correo o la contraseña son incorrectos.'})
+    try {
+        // busco el ususario en la db por email
+        const user = await ESUser.findOne({ email });
+        if(!user){
+            return res.status(404).json({msg: 'El usuario no existe.'});
+        };
+        // comparo la contraseña recibida con la del usuario de la db
+        const pwdMatch = await bcrypt.compare(password, user.password);
+        // mensaje de error si la contraseña no coincide
+        if(!pwdMatch){
+            return res.status(400).json({msg: 'El correo o la contraseña son incorrectos.'})
+        };
+        // Creo un token para el usuario usando la función de libs/jwt
+        const token = await ESCreateToken(user);
+        // Coloco una cookie con el token en la respuesta
+        res.cookie('token', token);
+        // Envío la respuesta de éxito al cliente
+        res.status(201).json({user})
+    } catch (error: any) {
+        res.status(500).json({message: error.message});
+    }
 }
