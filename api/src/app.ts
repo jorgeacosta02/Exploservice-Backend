@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import routes from './routes/index'
 import ESAuthRoutes from './routes/ESRoutes/ESAuth.routes';
 
@@ -21,6 +22,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use('/', routes);

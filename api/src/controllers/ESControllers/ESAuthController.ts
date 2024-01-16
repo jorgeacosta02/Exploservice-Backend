@@ -84,3 +84,8 @@ export const ESLogOut = (req: Request, res: Response ) => {
     // envío mensaje de éxito.
     res.sendStatus(200);
 }
+
+export const ESProfile = (req: Request, res: Response) => {
+    console.log('req.user', req.user);
+    res.send('profile')
+}
