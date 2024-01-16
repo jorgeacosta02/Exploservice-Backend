@@ -52,6 +52,7 @@ export const ESLogIn = async (req: Request, res: Response) => {
     try {
         // busco el ususario en la db por email
         const user = await ESUser.findOne({ email });
+        // envío mensaje de error si no se encuenta el usuario 
         if(!user){
             return res.status(404).json({msg: 'El usuario no existe.'});
         };
@@ -68,6 +69,18 @@ export const ESLogIn = async (req: Request, res: Response) => {
         // Envío la respuesta de éxito al cliente
         res.status(201).json({user})
     } catch (error: any) {
+        // envío mensaje de error si ocurriera
         res.status(500).json({message: error.message});
     }
+}
+
+export const ESLogOut = (req: Request, res: Response ) => {
+    // establezco cookie con token vacío
+    res.cookie('token','',
+        {
+            expires: new Date(0),
+        }
+    );
+    // envío mensaje de éxito.
+    res.sendStatus(200);
 }
