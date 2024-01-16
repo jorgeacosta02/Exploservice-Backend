@@ -19,9 +19,13 @@ export const ESSignUp = async (req: Request, res: Response) => {
         return res.status(400).json({msg: 'El usuario ya existe.'})
     }
 
-    const newUser = new ESUser (req.body);
-    await newUser.save();
-    return res.status(201).json(newUser);
+    try {
+        const newUser = new ESUser (req.body);
+        await newUser.save();
+        return res.status(201).json(newUser);
+    } catch (error) {
+       console.log(error);
+    }
 }
 
 export const ESLogIn = async (req: Request, res: Response) => {

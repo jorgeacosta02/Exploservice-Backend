@@ -24,7 +24,7 @@ app.use(express.json());
 
 // Routes
 app.use('/', routes);
-app.use(ESAuthRoutes);
+app.use('/api',ESAuthRoutes);
 
 
 export default  app;
