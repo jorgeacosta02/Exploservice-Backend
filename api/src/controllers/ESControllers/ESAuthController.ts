@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import ESUser, { IUser } from "../../models/ESModels/ESUserModel";
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from "../../config/config";
 
@@ -10,19 +11,27 @@ const ESCreateToken = (user: IUser) => {
 };
 
 export const ESSignUp = async (req: Request, res: Response) => {
-    if(!req.body.email || !req.body.password){
+    
+    const {email, password} = req.body;
+
+    if(!email || !password){
         return res.status(400).json({msg: 'Por favor envíe su correo y contraseña.'});
     }
     
-    const user = await ESUser.findOne({email: req.body.email});
+    const user = await ESUser.findOne({email: email});
     if(user){
         return res.status(400).json({msg: 'El usuario ya existe.'})
     }
 
     try {
-        const newUser = new ESUser (req.body);
-        await newUser.save();
-        return res.status(201).json(newUser);
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
+        const newUser = new ESUser ({
+            email,
+            password: hashedPassword
+        });
+        const savedUser = await newUser.save();
+        return res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
     } catch (error) {
        console.log(error);
     }

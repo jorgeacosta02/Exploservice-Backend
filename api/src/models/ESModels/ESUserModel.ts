@@ -25,15 +25,15 @@ const userSchema = new Schema({
 // Uso una función de ES5 para mantener el scope
 // Este es el método para establecer un hash (contraseña cifrada) en caso de que sea una carga nueva.
 
-userSchema.pre<IUser>('save', async function (next) {
-    const user = this;
-    if(!user.isModified('password')) return next()
+// userSchema.pre<IUser>('save', async function (next) {
+//     const user = this;
+//     if(!user.isModified('password')) return next()
 
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(user.password, salt);
-    user.password = hash;
-    next();
-});
+//     const salt = await bcrypt.genSalt(10);
+//     const hash = await bcrypt.hash(user.password, salt);
+//     user.password = hash;
+//     next();
+// });
 
 // Acá se crea un método para comparar la contraseña que llega con el hash guardado.
 
