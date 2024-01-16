@@ -18,18 +18,27 @@ export const ESSignUp = async (req: Request, res: Response) => {
     }
 
     try {
-        const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password, salt)
+        // Genero un salt para hashear
+        const salt = await bcrypt.genSalt(10);
+        // Hasheo la contraseña
+        const hash = await bcrypt.hash(password, salt);
+        // Creo un nuevo usuario
         const newUser = new ESUser ({
             email,
-            password: hashedPassword
+            password: hash
         });
+        // Grabo el usuaro en la base de datos y lo coloco en una variable.
         const savedUser = await newUser.save();
+        // Creo un token para el usuario usando la función de libs/jwt
         const token = await ESCreateToken(savedUser);
+
+        // Coloco una cookie en la respuesta
         res.cookie('token', token);
-        return res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
+        // Envío la respuesta de éxito al cliente
+        res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
     } catch (error: any) {
-       res.status(500).json({message: error.message});
+        // Envío respuesta de error al cliente
+        res.status(500).json({message: error.message});
     }
 }
 

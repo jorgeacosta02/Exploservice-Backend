@@ -3,8 +3,10 @@ import { IUser } from "../models/ESModels/ESUserModel";
 import config from "../config/config";
 
 
-
+// Crea un token
 export const ESCreateToken = (user: IUser): Promise<string> => {
+    
+    //devuelve una promesa resuelta o rechazada
     return new Promise((resolve, reject) => {
         jwt.sign(
             {
@@ -16,6 +18,7 @@ export const ESCreateToken = (user: IUser): Promise<string> => {
                 expiresIn: 86400
             },
             (err, token) => {
+                //la estructura del if debe ser esta para typescript
                 if (err) {
                     reject(err);
                 } else if (token) {
