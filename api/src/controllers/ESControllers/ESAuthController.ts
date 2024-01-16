@@ -5,10 +5,22 @@ import jwt from 'jsonwebtoken';
 import config from "../../config/config";
 
 const ESCreateToken = (user: IUser) => {
-    return jwt.sign({id: user.id, email: user.email}, config.jwtSecret, {
-        expiresIn: 86400
-    });
-};
+    const tokenCreated = jwt.sign(
+        {
+            id: user.id,
+            email: user.email
+        },
+        config.jwtSecret,
+        {
+            expiresIn: 86400
+        },
+        (err, token) => {
+            if(err) console.log(err);
+            return token;
+        }
+    );
+    return tokenCreated;
+}
 
 export const ESSignUp = async (req: Request, res: Response) => {
     
@@ -31,7 +43,29 @@ export const ESSignUp = async (req: Request, res: Response) => {
             password: hashedPassword
         });
         const savedUser = await newUser.save();
-        return res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
+
+        // jwt.sign(
+        //     {
+        //         id: savedUser.id,
+        //         email: savedUser.email
+        //     },
+        //     config.jwtSecret,
+        //     {
+        //         expiresIn: 86400
+        //     },
+        //     (err, token) => {
+        //         if(err) console.log(err);
+        //         res.cookie('token', token);
+        //         return res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
+        //     }
+        // );
+
+        ESCreateToken(savedUser);
+
+
+
+
+
     } catch (error) {
        console.log(error);
     }
@@ -48,9 +82,9 @@ export const ESLogIn = async (req: Request, res: Response) => {
     };
 
     const isMatch = await user.comparePassword(req.body.password);
-    if(isMatch){
-        return res.status(200).json({token: ESCreateToken(user)});
-    };
+    // if(isMatch){
+    //     return res.status(200).json({token: ESCreateToken(user)});
+    // };
 
     return res.status(400).json({msg: 'El correo o la contraseña son incorrectos.'})
 }
