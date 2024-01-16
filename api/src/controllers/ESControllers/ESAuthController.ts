@@ -85,7 +85,17 @@ export const ESLogOut = (req: Request, res: Response ) => {
     res.sendStatus(200);
 }
 
-export const ESProfile = (req: Request, res: Response) => {
-    console.log('req.user', req.user);
-    res.send('profile')
+export const ESProfile = async (req: Request, res: Response) => {
+    if (req.user) {
+        try {
+            // Hacer casting a IUser para indicar que req.user tiene la propiedad 'id'
+            const userFound = await ESUser.findById((req.user as IUser).id);
+            // Ahora TypeScript debería reconocer que userFound está definido y tiene una propiedad 'id'
+            res.send('profile');
+        } catch (error: any) {
+            res.status(500).json({ message: error.message });
+        }
+    } else {
+        res.status(401).json({ message: 'Usuario no autenticado' });
+    }
 }
