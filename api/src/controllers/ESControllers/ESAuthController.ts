@@ -1,26 +1,8 @@
 import { Request, Response } from "express";
 import ESUser, { IUser } from "../../models/ESModels/ESUserModel";
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import config from "../../config/config";
+import { ESCreateToken } from "../../libs/jwt";
 
-const ESCreateToken = (user: IUser) => {
-    const tokenCreated = jwt.sign(
-        {
-            id: user.id,
-            email: user.email
-        },
-        config.jwtSecret,
-        {
-            expiresIn: 86400
-        },
-        (err, token) => {
-            if(err) console.log(err);
-            return token;
-        }
-    );
-    return tokenCreated;
-}
 
 export const ESSignUp = async (req: Request, res: Response) => {
     
@@ -43,31 +25,11 @@ export const ESSignUp = async (req: Request, res: Response) => {
             password: hashedPassword
         });
         const savedUser = await newUser.save();
-
-        // jwt.sign(
-        //     {
-        //         id: savedUser.id,
-        //         email: savedUser.email
-        //     },
-        //     config.jwtSecret,
-        //     {
-        //         expiresIn: 86400
-        //     },
-        //     (err, token) => {
-        //         if(err) console.log(err);
-        //         res.cookie('token', token);
-        //         return res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
-        //     }
-        // );
-
-        ESCreateToken(savedUser);
-
-
-
-
-
-    } catch (error) {
-       console.log(error);
+        const token = await ESCreateToken(savedUser);
+        res.cookie('token', token);
+        return res.status(201).json(`El usuario ${savedUser.email} fue creado con éxito!!`);
+    } catch (error: any) {
+       res.status(500).json({message: error.message});
     }
 }
 

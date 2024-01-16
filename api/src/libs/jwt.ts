@@ -4,7 +4,7 @@ import config from "../config/config";
 
 
 
-const ESCreateToken = (user: IUser): Promise<string> => {
+export const ESCreateToken = (user: IUser): Promise<string> => {
     return new Promise((resolve, reject) => {
         jwt.sign(
             {
