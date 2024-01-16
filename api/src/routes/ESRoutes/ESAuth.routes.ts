@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ESSignUp, ESLogIn } from '../../controllers/ESControllers/ESUserController';
+import { ESSignUp, ESLogIn } from '../../controllers/ESControllers/ESAuthController';
 
 const ESAuthRoutes = Router();
 
