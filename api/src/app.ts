@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import routes from './routes/index'
 import ESAuthRoutes from './routes/ESRoutes/ESAuth.routes';
+import ESTasksRouter from './routes/ESRoutes/ESTasks.routes';
 
 import './database';
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 // Routes
 app.use('/', routes);
 app.use('/api',ESAuthRoutes);
+app.use('/api', ESTasksRouter);
 
 
 export default  app;

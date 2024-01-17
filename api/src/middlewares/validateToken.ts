@@ -11,8 +11,7 @@ export const authRequired = (req: Request, res: Response, next: NextFunction) =>
 
     jwt.verify(token, config.jwtSecret, (err: any, user: any) => {
         if(err) {
-            
-            return res.status(406).json({ message: err.message});
+              return res.status(406).json({ message: err.message});
         }
         req.user = user
         next();

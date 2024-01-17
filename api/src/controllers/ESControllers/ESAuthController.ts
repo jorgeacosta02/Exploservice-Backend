@@ -91,7 +91,9 @@ export const ESProfile = async (req: Request, res: Response) => {
             // Hacer casting a IUser para indicar que req.user tiene la propiedad 'id'
             const userFound = await ESUser.findById((req.user as IUser).id);
             // Ahora TypeScript debería reconocer que userFound está definido y tiene una propiedad 'id'
-            res.send('profile');
+            return res.json({
+                id: userFound?.id,
+            });
         } catch (error: any) {
             res.status(500).json({ message: error.message });
         }
