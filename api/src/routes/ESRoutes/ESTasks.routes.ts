@@ -6,7 +6,7 @@ import {
     ESGetTask,
     ESDeleteTask,
     ESUpdateTask
-} from '../../controllers/ESControllers/ESTasks.contoller'
+} from '../../controllers/ESControllers/ESTasksContoller'
 
 const ESTasksRouter = Router();
 
