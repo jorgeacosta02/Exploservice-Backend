@@ -37,8 +37,8 @@ const userSchema = new Schema({
 
 // Acá se crea un método para comparar la contraseña que llega con el hash guardado.
 
-userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
-    return await bcrypt.compare(password, this.password);
-}
+// userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
+//     return await bcrypt.compare(password, this.password);
+// }
 
 export default model<IUser>('ESUser', userSchema);

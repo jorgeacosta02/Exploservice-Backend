@@ -4,16 +4,16 @@ import {
     ESGetTasks,
     ESCreateTask,
     ESGetTask,
-    ESDeleteTasks,
-    ESUpdateTasks
+    ESDeleteTask,
+    ESUpdateTask
 } from '../../controllers/ESControllers/ESTasks.contoller'
 
 const ESTasksRouter = Router();
 
-ESTasksRouter.get('/exploservice/tasks', authRequired);
-ESTasksRouter.post('/exploservice/tasks', authRequired);
-ESTasksRouter.delete('/exploservice/tasks/:id', authRequired);
-ESTasksRouter.get('/exploservice/tasks/:id', authRequired);
-ESTasksRouter.put('/exploservice/tasks/:id', authRequired);
+ESTasksRouter.get('/exploservice/tasks', authRequired, ESGetTasks);
+ESTasksRouter.post('/exploservice/tasks', authRequired, ESCreateTask);
+ESTasksRouter.delete('/exploservice/tasks/:id', authRequired, ESDeleteTask);
+ESTasksRouter.get('/exploservice/tasks/:id', authRequired, ESGetTask);
+ESTasksRouter.put('/exploservice/tasks/:id', authRequired, ESUpdateTask);
 
 export default ESTasksRouter
