@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import ESUser, { IUser } from "../../models/ESModels/ESUserModel";
+import User, { IUser } from "../../models/models/user.model";
 import bcrypt from 'bcrypt';
-import { ESCreateToken } from "../../libs/jwt";
+import { createToken } from "../../libs/jwt";
 
 
-export const ESSignUp = async (req: Request, res: Response) => {
+export const signUpController = async (req: Request, res: Response) => {
     
     const {email, password} = req.body;
 
@@ -12,7 +12,7 @@ export const ESSignUp = async (req: Request, res: Response) => {
         return res.status(400).json({msg: 'Por favor envíe su correo y contraseña.'});
     }
     
-    const user = await ESUser.findOne({email: email});
+    const user = await User.findOne({email: email});
     if(user){
         return res.status(400).json({msg: 'El usuario ya existe.'})
     }
@@ -23,14 +23,14 @@ export const ESSignUp = async (req: Request, res: Response) => {
         // Hasheo la contraseña
         const hash = await bcrypt.hash(password, salt);
         // Creo un nuevo usuario
-        const newUser = new ESUser ({
+        const newUser = new User ({
             email,
             password: hash
         });
         // Grabo el usuaro en la base de datos y lo coloco en una variable.
         const savedUser = await newUser.save();
         // Creo un token para el usuario usando la función de libs/jwt
-        const token = await ESCreateToken(savedUser);
+        const token = await createToken(savedUser);
         // Coloco una cookie con el token en la respuesta
         res.cookie('token', token);
         // Envío la respuesta de éxito al cliente
@@ -41,7 +41,7 @@ export const ESSignUp = async (req: Request, res: Response) => {
     }
 }
 
-export const ESLogIn = async (req: Request, res: Response) => {
+export const logInController = async (req: Request, res: Response) => {
     // Destructuro los datos de la request
     const {email, password} = req.body;
     // Veirifico que estén todos los datos necesarios
@@ -51,7 +51,7 @@ export const ESLogIn = async (req: Request, res: Response) => {
 
     try {
         // busco el ususario en la db por email
-        const user = await ESUser.findOne({ email });
+        const user = await User.findOne({ email });
         // envío mensaje de error si no se encuenta el usuario 
         if(!user){
             return res.status(404).json({msg: 'El usuario no existe.'});
@@ -63,7 +63,7 @@ export const ESLogIn = async (req: Request, res: Response) => {
             return res.status(400).json({msg: 'El correo o la contraseña son incorrectos.'})
         };
         // Creo un token para el usuario usando la función de libs/jwt
-        const token = await ESCreateToken(user);
+        const token = await createToken(user);
         // Coloco una cookie con el token en la respuesta
         res.cookie('token', token);
         // Envío la respuesta de éxito al cliente
@@ -74,7 +74,7 @@ export const ESLogIn = async (req: Request, res: Response) => {
     }
 }
 
-export const ESLogOut = (req: Request, res: Response ) => {
+export const logOutController = (req: Request, res: Response ) => {
     // establezco cookie con token vacío
     res.cookie('token','',
         {
@@ -85,11 +85,11 @@ export const ESLogOut = (req: Request, res: Response ) => {
     res.sendStatus(200);
 }
 
-export const ESProfile = async (req: Request, res: Response) => {
+export const profileController = async (req: Request, res: Response) => {
     if (req.user) {
         try {
             // Hacer casting a IUser para indicar que req.user tiene la propiedad 'id'
-            const userFound = await ESUser.findById((req.user as IUser).id);
+            const userFound = await User.findById((req.user as IUser).id);
             // Ahora TypeScript debería reconocer que userFound está definido y tiene una propiedad 'id'
             return res.json({
                 id: userFound?.id,

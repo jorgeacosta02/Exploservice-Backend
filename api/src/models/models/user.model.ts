@@ -1,10 +1,11 @@
 import { model, Schema, Document} from "mongoose";
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 
 export interface IUser extends Document {
     email: string;
     password: string;
-    comparePassword: (password:string) => Promise<boolean>;
+    id: string
+    // comparePassword: (password:string) => Promise<boolean>;
 }
 
 const userSchema = new Schema({
@@ -18,6 +19,8 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: true 
+    },id: {
+        type: string
     }
 });
 
@@ -41,4 +44,4 @@ const userSchema = new Schema({
 //     return await bcrypt.compare(password, this.password);
 // }
 
-export default model<IUser>('ESUser', userSchema);
+export default model<IUser>('User', userSchema);

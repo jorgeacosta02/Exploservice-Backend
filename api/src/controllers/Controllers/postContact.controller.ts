@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const { EXPLOSERVICE_NODEMAILER_USER, EXPLOSERVICE_NODEMAILER_PASS, DESTINATION_EMAIL } = process.env;
 
-const EAPostContactController = async (req: Request, res: Response) => {
+const postContactController = async (req: Request, res: Response) => {
   try {
     const {name,email,subject,message} = req.body;
     // inicia la funcion de recibir el mensaje
@@ -63,4 +63,4 @@ const EAPostContactController = async (req: Request, res: Response) => {
   }
 };
 
-export default EAPostContactController;
+export default postContactController;

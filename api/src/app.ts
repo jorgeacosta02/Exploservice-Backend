@@ -1,11 +1,11 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import routes from './routes/index'
-import ESAuthRoutes from './routes/ESRoutes/ESAuth.routes';
-import ESTasksRouter from './routes/ESRoutes/ESTasks.routes';
+import authRoutes from './routes/routes/auth.routes';
+import tasksRouter from './routes/routes/tasks.routes';
 
 import './database';
 
@@ -27,8 +27,8 @@ app.use(cookieParser());
 
 // Routes
 app.use('/', routes);
-app.use('/api',ESAuthRoutes);
-app.use('/api', ESTasksRouter);
+app.use('/api',authRoutes);
+app.use('/api', tasksRouter);
 
 
 export default  app;

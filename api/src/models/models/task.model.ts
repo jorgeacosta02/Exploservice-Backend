@@ -1,29 +1,35 @@
-import { model, Schema, Document} from "mongoose";
+import { model, Schema, Document, Types} from "mongoose";
 
 export interface ITask extends Document {
     title: string;
     description: string;
     date: Date;
+    user: Types.ObjectId
 }
 
 const taskSchema = new Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
         lowercase: true,
         trim: true
     },
     description: {
         type: String,
-        require: true 
+        required: true 
     },
     date: {
         type: Date,
         default: Date.now,
+    },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: 'ESUser',
+        required: true
     }
 }, {
     timestamps: true
 });
 
 
-export default model<ITask>('ESTask', taskSchema);
+export default model<ITask>('Task', taskSchema);

@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
-import { IUser } from "../models/ESModels/ESUserModel";
+import { IUser } from "../models/models/user.model";
 import config from "../config/config";
 
 
 // Crea un token
-export const ESCreateToken = (user: IUser): Promise<string> => {
+export const createToken = (user: IUser): Promise<string> => {
     
     //devuelve una promesa resuelta o rechazada
     return new Promise((resolve, reject) => {

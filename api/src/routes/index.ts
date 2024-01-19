@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import ESRoutes from './ESRoutes/ESIndex';
+import routes from './routes/Index';
 import EARoutes from './EARoutes/EAIndex';
 
 const router = Router()
 
-router.use('/exploservice', ESRoutes);
+router.use('/exploservice', routes);
 router.use('/exploagro', EARoutes);
 
 export default router
