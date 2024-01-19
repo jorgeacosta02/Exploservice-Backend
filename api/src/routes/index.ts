@@ -6,7 +6,7 @@ import EARoutes from './EARoutes/EAIndex';
 
 const router = Router()
 
-router.use('/', contactRoutes);
+router.use('/', contactRoutes)
 router.use('/', authRoutes);
 router.use('/', tasksRouter);
 router.use('/exploagro', EARoutes);

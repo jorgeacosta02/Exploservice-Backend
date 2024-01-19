@@ -4,7 +4,7 @@ export interface ITask extends Document {
     title: string;
     description: string;
     date: Date;
-    user: Types.ObjectId
+    userId: Schema.Types.ObjectId
 }
 
 const taskSchema = new Schema({
@@ -22,8 +22,8 @@ const taskSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    user:{
-        type: Types.ObjectId,
+    userId:{
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     }

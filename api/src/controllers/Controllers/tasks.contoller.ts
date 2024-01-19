@@ -7,13 +7,15 @@ export const getTasksController = async (req: Request, res: Response) => {
 };
 
 export const createTaskController = async (req: Request, res: Response) => {
-    const { title, description, date, userId } = req.body;
-    // const userId = req.user ? req.user._id : undefined;
+    const { title, description, date, user } = req.body;
+    console.log('req.body en CTC: ',req.body);
+    console.log('user en CTC: ',user);
+    console.log('user.id en CTC: ',user.id);
     const newTask = new Task({
         title,
         description,
         date,
-        user: userId
+        userId: user.id
     })
     const savedTask = await newTask.save();
     res.json(savedTask);
