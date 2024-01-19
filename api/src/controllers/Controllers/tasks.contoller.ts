@@ -2,7 +2,10 @@ import { Request, Response } from "express";
 import Task from "../../models/models/task.model";
 
 export const getTasksController = async (req: Request, res: Response) => {
-    const tasks = await Task.find()
+    console.log('req.body.user.id en GTsC: ', req.body.user.id);
+    const tasks = await Task.find({
+        userId: req.body.user.id
+    })
     res.json(tasks);
 };
 
