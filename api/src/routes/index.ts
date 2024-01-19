@@ -1,10 +1,12 @@
 import { Router } from 'express';
-import routes from './routes/Index';
+import authRoutes from './auth.routes';
+import tasksRouter from './tasks.routes';
 import EARoutes from './EARoutes/EAIndex';
 
 const router = Router()
 
-router.use('/exploservice', routes);
+router.use('/', authRoutes);
+router.use('/', tasksRouter);
 router.use('/exploagro', EARoutes);
 
 export default router

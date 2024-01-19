@@ -3,9 +3,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import routes from './routes/index'
-import authRoutes from './routes/routes/auth.routes';
-import tasksRouter from './routes/routes/tasks.routes';
+import routes from './routes/index';
 
 import './database';
 
@@ -26,9 +24,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
-app.use('/', routes);
-app.use('/api',authRoutes);
-app.use('/api', tasksRouter);
+app.use('/api', routes);
+
 
 
 export default  app;

@@ -19,9 +19,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: true 
-    },id: {
-        type: string
-    }
+    },
+    // id: {
+    //     type: string
+    // }
 });
 
 // Este método se ejecuta antes de guardar el dato
