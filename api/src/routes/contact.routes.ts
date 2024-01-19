@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import postContactController from '../controllers/Controllers/postContact.controller';
 
-const routes = Router();
+const contactRoutes = Router();
 
-routes.post('/contact', postContactController);
+contactRoutes.post('/contact', postContactController);
 
-export default routes;
+export default contactRoutes;

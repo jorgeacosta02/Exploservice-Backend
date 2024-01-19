@@ -14,6 +14,7 @@ export const authRequired = (req: Request, res: Response, next: NextFunction) =>
               return res.status(406).json({ message: err.message});
         }
         req.user = user
+        console.log(user);
         next();
     });
 

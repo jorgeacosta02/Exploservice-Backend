@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import routes from './routes/index';
+import router from './routes';
 
 import './database';
 
@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
-app.use('/api', routes);
+app.use('/api', router);
 
 
 

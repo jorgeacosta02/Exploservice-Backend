@@ -7,8 +7,8 @@ export const getTasksController = async (req: Request, res: Response) => {
 };
 
 export const createTaskController = async (req: Request, res: Response) => {
-    const { title, description, date } = req.body;
-    const userId = req.user ? req.user.id : undefined;
+    const { title, description, date, userId } = req.body;
+    // const userId = req.user ? req.user._id : undefined;
     const newTask = new Task({
         title,
         description,

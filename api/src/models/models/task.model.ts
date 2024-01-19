@@ -23,8 +23,8 @@ const taskSchema = new Schema({
         default: Date.now,
     },
     user:{
-        type: Schema.Types.ObjectId,
-        ref: 'ESUser',
+        type: Types.ObjectId,
+        ref: 'User',
         required: true
     }
 }, {

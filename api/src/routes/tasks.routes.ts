@@ -10,10 +10,10 @@ import {
 
 const tasksRouter = Router();
 
-tasksRouter.get('/exploservice/tasks', authRequired, getTasksController);
-tasksRouter.get('/exploservice/tasks/:id', authRequired, getTaskController);
-tasksRouter.post('/exploservice/tasks', authRequired, createTaskController);
-tasksRouter.delete('/exploservice/tasks/:id', authRequired, deleteTaskController);
-tasksRouter.put('/exploservice/tasks/:id', authRequired, updateTaskController);
+tasksRouter.get('/tasks', authRequired, getTasksController);
+tasksRouter.get('/tasks/:id', authRequired, getTaskController);
+tasksRouter.post('/tasks', authRequired, createTaskController);
+tasksRouter.delete('/tasks/:id', authRequired, deleteTaskController);
+tasksRouter.put('/tasks/:id', authRequired, updateTaskController);
 
 export default tasksRouter
