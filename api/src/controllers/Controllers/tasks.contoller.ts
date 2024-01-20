@@ -4,16 +4,22 @@ import Task from "../../models/models/task.model";
 export const getTasksController = async (req: Request, res: Response) => {
     console.log('req.body.user.id en GTsC: ', req.body.user.id);
     const tasks = await Task.find({
+        //Con esta propiedad busca las tareas que tienen ese userId
         userId: req.body.user.id
     })
+    //con este agregado populate muestra la información del usuario relacinado a la tarea por el userId.
+    .populate('userId');
     res.json(tasks);
 };
 
 export const createTaskController = async (req: Request, res: Response) => {
-    const { title, description, date, user } = req.body;
-    console.log('req.body en CTC: ',req.body);
-    console.log('user en CTC: ',user);
-    console.log('user.id en CTC: ',user.id);
+    const {
+        title,
+        description,
+        date,
+        // Este es el objeto user agregado en validateToken.ts
+        user
+    } = req.body;
     const newTask = new Task({
         title,
         description,
