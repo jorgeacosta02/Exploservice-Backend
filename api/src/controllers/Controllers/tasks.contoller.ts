@@ -12,6 +12,13 @@ export const getTasksController = async (req: Request, res: Response) => {
     res.json(tasks);
 };
 
+export const getTaskController = async (req: Request, res: Response) => {
+    const task = await Task.findById(req.params.id)
+    .populate('userId');
+    if (!task) return res.status(404).json({message: 'Tarea no encontrada'});
+    res.json(task);
+};
+
 export const createTaskController = async (req: Request, res: Response) => {
     const {
         title,
@@ -28,12 +35,6 @@ export const createTaskController = async (req: Request, res: Response) => {
     })
     const savedTask = await newTask.save();
     res.json(savedTask);
-};
-
-export const getTaskController = async (req: Request, res: Response) => {
-    const task = await Task.findById(req.params.id);
-    if (!task) return res.status(404).json({message: 'Tarea no encontrada'});
-    res.json(task);
 };
 
 export const deleteTaskController = async (req: Request, res: Response) => {
