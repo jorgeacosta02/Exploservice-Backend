@@ -4,7 +4,7 @@ import {
     logInController,
     logOutController,
     profileController
-} from '../controllers/Controllers/auth.controller';
+} from '../controllers/auth.controller';
 import { authRequired } from '../middlewares/validateToken'
 
 const authRoutes = Router();

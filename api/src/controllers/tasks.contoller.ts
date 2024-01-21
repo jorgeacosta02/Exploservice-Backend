@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Task from "../../models/models/task.model";
+import Task from "../models/task.model";
 
 export const getTasksController = async (req: Request, res: Response) => {
     console.log('req.body.user.id en GTsC: ', req.body.user.id);

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import User, { IUser } from "../../models/models/user.model";
+import User, { IUser } from "../models/user.model";
 import bcrypt from 'bcrypt';
-import { createToken } from "../../libs/jwt";
+import { createToken } from "../libs/jwt";
 
 
 export const signUpController = async (req: Request, res: Response) => {
