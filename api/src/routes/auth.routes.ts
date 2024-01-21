@@ -5,7 +5,7 @@ import {
     logOutController,
     profileController
 } from '../controllers/auth.controller';
-import { authRequired } from '../middlewares/validateToken'
+import { authRequired } from '../middlewares/validate.token'
 
 const authRoutes = Router();
 
