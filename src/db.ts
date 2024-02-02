@@ -14,17 +14,20 @@ const sequelize = new Sequelize( ENVIRONMENT==="dev"?
   }
 );
 
-const basename = path.basename(__filename);
+// const basename = path.basename(__filename);
 
 const modelDefiners: Array<(sequelize: Sequelize) => void> = [];
 
-fs.readdirSync(path.join(__dirname, "src/models"))
+const modelsDir = ENVIRONMENT === "dev" ? "src/models" : "dist/models";
+const basename = path.basename(__filename);
+
+fs.readdirSync(path.join(__dirname, modelsDir))
   .filter(
     (file) =>
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".ts"
   )
   .forEach((file) => {
-    const modelDefiner = require(path.join(__dirname, "src/models", file));
+    const modelDefiner = require(path.join(__dirname, modelsDir, file));
     modelDefiners.push(modelDefiner.default);
   });
 
@@ -38,7 +41,7 @@ Object.entries(sequelize.models).forEach(([name, model]) => {
 
 
 // relacionamos
-const { UserModel, ProjectModel, TaskModel} = upperCaseModels; 
+const { UserModel, TaskModel} = upperCaseModels; 
 
 // UserPerson.hasMany(ShoppingHistory)
 // UserPerson.hasMany(Qualification)
@@ -55,7 +58,7 @@ const { UserModel, ProjectModel, TaskModel} = upperCaseModels;
 
 
 
-export { UserModel, ProjectModel, TaskModel,sequelize}
+export { UserModel, TaskModel, sequelize}
 
 
 
@@ -79,14 +82,16 @@ export { UserModel, ProjectModel, TaskModel,sequelize}
 
 
 // import { Sequelize } from 'sequelize-typescript';
+// import UserModel from './models/UserModel';
+// import ProjectModel from './models/ProjectModel';
+// import TaskModel from './models/TaskModel';
 // import dotenv from 'dotenv';
-// dotenv.config()
 
-// const {
-//   DB_USER,
-//   DB_PASSWORD,
-//   DB_HOST
-// } = process.env
+// dotenv.config();
+
+// console.log('db al inicio');
+
+// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 // // Configuración de la conexión a la base de datos
 // export const sequelize = new Sequelize({
@@ -95,7 +100,7 @@ export { UserModel, ProjectModel, TaskModel,sequelize}
 //   password: DB_PASSWORD,
 //   host: DB_HOST,
 //   dialect: 'postgres',
-//   models: [__dirname + '/models/*.ts'],// Ruta a tus modelos
+//   models: [UserModel, ProjectModel, TaskModel], // Lista de modelos
 //   define: {
 //     // Utiliza UUIDs en lugar de IDs enteros
 //     underscored: true,
@@ -103,7 +108,10 @@ export { UserModel, ProjectModel, TaskModel,sequelize}
 //   },
 // });
 
+// console.log('DATABASE')
 // // Probar la conexión
-// sequelize.authenticate()
-//   .then(() => console.log('Connected to the database'))
-//   .catch((err) => console.error('Error connecting to the database:', err));
+// // sequelize.authenticate()
+// //   .then(() => console.log('Connected to the database'))
+// //   .catch((err) => console.error('Error connecting to the database:', err));
+
+// export { UserModel, ProjectModel, TaskModel};

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import User from "../../models/UserModel";
+import { UserModel } from "../../db";
 import bcrypt from 'bcrypt';
 import { createToken } from "../../libs/jwt";
 
@@ -25,7 +25,7 @@ const userRegisterController = async (req: Request, res: Response) => {
     if(!password ) return res.status(400).json({msg: 'Por favor envíe su contraseña.'});
 
     // user check
-    const user = await User.findOne({
+    const user = await UserModel.findOne({
         where:{
             dni
         }
@@ -44,7 +44,7 @@ const userRegisterController = async (req: Request, res: Response) => {
         // Hasheo la contraseña
         const hash = await bcrypt.hash(password, salt);
         // Creo un nuevo usuario
-        const newUser = new User ({
+        const newUser = new UserModel ({
             firstName,
             lastName,
             dni,

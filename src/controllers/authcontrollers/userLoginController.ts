@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import User from "../../models/UserModel";
+import { UserModel } from "../../db";;
 import bcrypt from 'bcrypt';
 import { createToken } from "../../libs/jwt";
 import { ITokenUserData } from "../../interfaces/userInterfaces";
@@ -16,7 +16,7 @@ const userLogInController = async (req: Request, res: Response) => {
 
     try {
         // busco el ususario en la db por email
-        const user = await User.findOne({
+        const user = await UserModel.findOn({
             where: {
               dni // Ajusta esto según tus necesidades
             },

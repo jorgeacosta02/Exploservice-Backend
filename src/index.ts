@@ -7,18 +7,31 @@ const port = process.env.PORT || 3001;
 dotenv.config();
 
 // Sincronizar la base de datos y levantar el servidor
-sequelize
-  .sync({ force: true })
-  .then(() => {
-  //  dataBase();
-    console.log("Database synchronized");
+
+async function main () {
+  try {
+    await sequelize.authenticate();
+    console.log("Conexión a Base de Datos exitosa");
     app.listen(port, () => {
       console.log(`Server listening on port ${port}`);
     });
-  })
-  .catch((error: Error) => {
-    console.error("Error synchronizing database:", error);
-  });
+  } catch (error) {
+    console.error("Error al conectarse a la Base de Datos:", error);
+  }
+}
+
+main();
+
+
+// sequelize
+//   .sync({ force: true })
+//   .then(() => {
+//   //  dataBase();
+//     console.log("Hol");
+//   })
+//   .catch((error: Error) => {
+//     console.error("Error synchronizing database:", error);
+//   });
 
 
 
