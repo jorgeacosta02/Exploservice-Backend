@@ -1,7 +1,9 @@
 import { sequelize } from "./db"; // Ajusta la ruta si es necesario
 import app from "./app"; // Ajusta la ruta si es necesario
 import dotenv from "dotenv";
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3003;
+import './models/UserModel'
+import './models/TaskModel'
 // import dataBase from "./helpers/baseDeDatos";
 
 dotenv.config();
@@ -10,10 +12,12 @@ dotenv.config();
 
 async function main () {
   try {
+    await sequelize.sync({ force: true })
+      .then(() => console.log("La base de datos se ha sincronizado correctamente"))
     await sequelize.authenticate();
     console.log("Conexión a Base de Datos exitosa");
     app.listen(port, () => {
-      console.log(`Server listening on port ${port}`);
+      console.log(`Holasssss Server listening on port ${port}`);
     });
   } catch (error) {
     console.error("Error al conectarse a la Base de Datos:", error);
@@ -53,7 +57,7 @@ main();
 // // Sincronizar los modelos con la base de datos (esto creará las tablas si no existen)
 // sequelize.sync({ force: true })
 //   .then(() => {
-//     console.log('Database synchronized.');
+//     console.log('.');
 //     // Puedes comenzar a usar tus modelos aquí
 //   })
 //   .catch((err) => console.error('Error synchronizing the database:', err));

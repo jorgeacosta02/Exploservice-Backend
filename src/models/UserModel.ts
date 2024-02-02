@@ -4,11 +4,11 @@ import UserRole from "../emuns";
 import { UserPersonModelInterface } from "../interfaces/interfaces";
 
 
-type UserModel = Model<UserPersonModelInterface> & {
+type TUserModel = Model<UserPersonModelInterface> & {
   new (): UserPersonModelInterface;
 };
 
-const defineUserModel = (): ModelCtor<UserModel> => {
+const defineUserModel = (): ModelCtor<TUserModel> => {
   return sequelize.define("userModel", {
     id: {
       type: DataTypes.UUID,
@@ -59,7 +59,7 @@ const defineUserModel = (): ModelCtor<UserModel> => {
         isIn: [Object.values(UserRole)], // Asegura que el valor del enum sea válido
       },
     },
-  }) as ModelCtor<UserModel>;
+  }) as ModelCtor<TUserModel>;
 };
 
 export default defineUserModel;
