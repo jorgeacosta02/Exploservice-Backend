@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import User from "../../models/user.model";
+import User from "../../models/User";
 import bcrypt from 'bcrypt';
 import { createToken } from "../../libs/jwt";
-import { ITokenUserData } from "../../Interfaces/userInterfaces";
+import { ITokenUserData } from "../../interfaces/userInterfaces";
 
 
 const userLogInController = async (req: Request, res: Response) => {
@@ -29,12 +29,13 @@ const userLogInController = async (req: Request, res: Response) => {
         };
         // Defino el objeto con los datos a enviar en el token.
         const tokenData: ITokenUserData = {
-            id: user._id,
+            id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             dni: user.dni,
             phone: user.phone,
             email: user.email,
+            position: user.position,
             active: user.active,
             role: user.role
         }

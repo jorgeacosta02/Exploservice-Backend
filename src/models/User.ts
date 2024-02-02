@@ -20,7 +20,23 @@ class User extends Model {
   id!: any;
 
   @Column
-  name!: string;
+  firstName!: string;
+  @Column
+  lastName!: string;
+  @Column
+  dni!: number;
+  @Column
+  phone!: number;
+  @Column
+  email!: string;
+  @Column
+  password!: string;
+  @Column
+  position!: string;
+  @Column
+  active!: boolean;
+  @Column
+  role!: string;
 
   // Otros campos y decoradores según tu modelo
 }

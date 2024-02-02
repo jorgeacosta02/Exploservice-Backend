@@ -11,19 +11,3 @@ sequelize.sync({ force: true })
   })
   .catch((err) => console.error('Error synchronizing the database:', err));
 
-
-
-
-
-
-
-
-// INDEX VIEJO CON MONGODB
-
-// import app from './app';
-// import './db';
-
-
-// app.listen(app.get('port'), () => {
-//     console.log(`Server listening on port ${app.get('port')}`);
-// });

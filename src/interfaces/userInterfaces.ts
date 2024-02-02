@@ -58,6 +58,7 @@ export interface ITokenUserData {
     dni: number;
     phone: number;
     email: string;
+    position: string;
     active: boolean;
     role: string;
 }
