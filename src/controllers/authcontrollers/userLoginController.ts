@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import User from "../../models/User";
+import User from "../../models/UserModel";
 import bcrypt from 'bcrypt';
 import { createToken } from "../../libs/jwt";
 import { ITokenUserData } from "../../interfaces/userInterfaces";
@@ -16,7 +16,11 @@ const userLogInController = async (req: Request, res: Response) => {
 
     try {
         // busco el ususario en la db por email
-        const user = await User.findOne({ dni });
+        const user = await User.findOne({
+            where: {
+              dni // Ajusta esto según tus necesidades
+            },
+        });
         // envío mensaje de error si no se encuenta el usuario 
         if(!user){
             return res.status(404).json({msg: 'El usuario no existe.'});

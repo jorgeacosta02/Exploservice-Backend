@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import User from "../../models/user.model";
+import User from "../../models/UserModel";
 import bcrypt from 'bcrypt';
 import { createToken } from "../../libs/jwt";
 
@@ -25,7 +25,11 @@ const userRegisterController = async (req: Request, res: Response) => {
     if(!password ) return res.status(400).json({msg: 'Por favor envíe su contraseña.'});
 
     // user check
-    const user = await User.findOne({dni: dni});
+    const user = await User.findOne({
+        where:{
+            dni
+        }
+    });
 
     // user already exists
     if(user){
@@ -53,14 +57,15 @@ const userRegisterController = async (req: Request, res: Response) => {
         const savedUser = await newUser.save();
         // Creo un token para el usuario usando la función de libs/jwt
         const token: string = await createToken({
-            id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            dni: user.dni,
-            phone: user.phone,
-            email: user.email,
-            active: user.active,
-            role: user.role
+            id: savedUser.id,
+            firstName: savedUser.firstName,
+            lastName: savedUser.lastName,
+            dni: savedUser.dni,
+            phone: savedUser.phone,
+            email: savedUser.email,
+            position: savedUser.position,
+            active: savedUser.active,
+            role: savedUser.role
         });
         // Coloco una cookie con el token en la respuesta
         res.cookie('token', token);

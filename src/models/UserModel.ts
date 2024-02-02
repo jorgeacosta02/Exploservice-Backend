@@ -1,4 +1,3 @@
-// models/User.ts
 import {
   Model,
   Column,
@@ -9,7 +8,7 @@ import {
 } from 'sequelize-typescript';
 
 @Table({ tableName: 'users' })
-class User extends Model {
+class UserModel extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({
@@ -23,7 +22,10 @@ class User extends Model {
   firstName!: string;
   @Column
   lastName!: string;
-  @Column
+  @Column({
+    type: DataType.INTEGER, // Ajusta el tipo según lo que uses para DNI
+    allowNull: false,
+  })
   dni!: number;
   @Column
   phone!: number;
@@ -41,4 +43,4 @@ class User extends Model {
   // Otros campos y decoradores según tu modelo
 }
 
-export default User;
+export default UserModel;

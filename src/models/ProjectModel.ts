@@ -1,4 +1,3 @@
-// models/Project.ts
 import {
   Model,
   Column,
@@ -9,10 +8,10 @@ import {
   Default,
   DataType,
 } from 'sequelize-typescript';
-import User from './User';
+import UserModel from './UserModel';
 
 @Table({ tableName: 'projects' })
-class Project extends Model {
+class ProjectModel extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4) // Asigna un valor por defecto (UUIDv4 en este caso)
   @Column({
@@ -24,12 +23,12 @@ class Project extends Model {
   @Column
   projectName!: string;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => UserModel)
   @Column
   userId!: string;
 
-  @BelongsTo(() => User)
-  user!: User;
+  @BelongsTo(() => UserModel)
+  userModel!: UserModel;
 }
 
-export default Project;
+export default ProjectModel;
