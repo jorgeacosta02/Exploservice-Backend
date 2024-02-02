@@ -5,7 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import router from './routes';
 
-import './database';
+import './db';
 
 dotenv.config();
 const port = process.env.PORT || 3001;

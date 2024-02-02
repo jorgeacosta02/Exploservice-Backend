@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { IUser } from "../models/user.model";
+import { IUser } from "../models/montoModels/user.model";
 import config from "../config/config";
 
 

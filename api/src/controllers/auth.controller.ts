@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import User, { IUser } from "../models/user.model";
+import User, { IUser } from "../models/montoModels/user.model";
 import bcrypt from 'bcrypt';
 import { createToken } from "../libs/jwt";
 
