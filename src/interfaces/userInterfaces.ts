@@ -3,6 +3,7 @@ import { Document } from "mongoose";
 
 // Interface for saving user on db
 export interface IUserData extends Document {
+    id: string,
     firstName: string;
     lastName: string;
     dni: number;
@@ -16,7 +17,7 @@ export interface IUserData extends Document {
 
 // Interface user from db
 export interface IUserDataFromDB {
-    _id: string,
+    id: string,
     firstName: string;
     lastName: string;
     dni: number;

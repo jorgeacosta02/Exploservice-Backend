@@ -16,7 +16,7 @@ const userLogInController = async (req: Request, res: Response) => {
 
     try {
         // busco el ususario en la db por email
-        const user = await UserModel.findOn({
+        const user = await UserModel.findOne({
             where: {
               dni // Ajusta esto según tus necesidades
             },

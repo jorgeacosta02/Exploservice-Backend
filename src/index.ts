@@ -1,8 +1,7 @@
 import { sequelize } from "./db"; // Ajusta la ruta si es necesario
 import app from "./app"; // Ajusta la ruta si es necesario
 import dotenv from "dotenv";
-const port = process.env.PORT || 3003;
-import './models/UserModel'
+const port = process.env.PORT || 5000;
 import './models/TaskModel'
 // import dataBase from "./helpers/baseDeDatos";
 
@@ -27,15 +26,7 @@ async function main () {
 main();
 
 
-// sequelize
-//   .sync({ force: true })
-//   .then(() => {
-//   //  dataBase();
-//     console.log("Hol");
-//   })
-//   .catch((error: Error) => {
-//     console.error("Error synchronizing database:", error);
-//   });
+
 
 
 
@@ -49,20 +40,27 @@ main();
 
 
 // index.ts
+// import { sequelize } from "./db"; // Ajusta la ruta si es necesario
+// import app from "./app"; // Ajusta la ruta si es necesario
+// import dotenv from "dotenv";
+// const port = process.env.PORT || 3003;
 // import { sequelize } from './db';
 // import app from './app';
 // // import UserModel from './models/UserModel';
 // // import ProjectModel from './models/ProjectModel';
-
+// dotenv.config()
 // // Sincronizar los modelos con la base de datos (esto creará las tablas si no existen)
 // sequelize.sync({ force: true })
 //   .then(() => {
 //     console.log('.');
+//     app.listen(port, () => {
+//             console.log(`Holasssss Server listening on port ${port}`);
+//           });
 //     // Puedes comenzar a usar tus modelos aquí
 //   })
 //   .catch((err) => console.error('Error synchronizing the database:', err));
 
-// app.listen('3001', () => {
-//   console.log('app listening on port 3001')
-// })
+// // app.listen('3001', () => {
+// //   console.log('app listening on port 3001')
+// // })
 
