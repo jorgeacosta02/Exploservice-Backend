@@ -1,53 +1,3 @@
-// import { DataTypes, Model, ModelCtor } from "sequelize";
-// import { sequelize } from "../db";
-// import UserRole from "../emuns";
-// import { UserPersonModelInterface } from "../interfaces/interfaces";
-
-
-// type TaskModel = Model<UserPersonModelInterface> & {
-//   new (): UserPersonModelInterface;
-// };
-
-// const defineTaskModel = (): ModelCtor<TaskModel> => {
-//   return sequelize.define("taskModel", {
-//     id: {
-//       type: DataTypes.UUID,
-//       primaryKey: true,
-//       defaultValue: DataTypes.UUIDV4,
-//     },
-//     name: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-//     description: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-    
-//   }) as ModelCtor<TaskModel>;
-// };
-
-// export default defineTaskModel;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import {
     Model,
     Column,
@@ -72,9 +22,6 @@ import {
     name!: string;
     @Column
     description!: string;
-    
-  
-    // Otros campos y decoradores según tu modelo
   }
   
 
