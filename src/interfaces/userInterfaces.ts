@@ -6,8 +6,8 @@ export interface IUserData extends Document {
     id: string,
     firstName: string;
     lastName: string;
-    dni: number;
-    phone: number;
+    dni: string;
+    phone: string;
     email: string;
     password: string;
     position: string;
@@ -20,8 +20,8 @@ export interface IUserDataFromDB {
     id: string,
     firstName: string;
     lastName: string;
-    dni: number;
-    phone: number;
+    dni: string;
+    phone: string;
     email: string;
     password: string;
     position: string;
@@ -33,15 +33,15 @@ export interface IUserDataFromDB {
 export interface IRegisterData {
     firstName: string;
     lastName: string;
-    dni: number;
-    phone: number;
+    dni: string;
+    phone: string;
     email: string;
     password: string;
 }
 
 // LOGIN
 export interface ILoginData {
-    dni: number;
+    dni: string;
     password: string;
   }
 
@@ -56,8 +56,8 @@ export interface ITokenUserData {
     id: string;
     firstName: string;
     lastName: string;
-    dni: number;
-    phone: number;
+    dni: string;
+    phone: string;
     email: string;
     position: string;
     active: boolean;

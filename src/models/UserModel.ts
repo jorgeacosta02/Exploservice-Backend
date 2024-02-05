@@ -108,9 +108,9 @@ export class UserModel extends Model {
     type: DataType.INTEGER, // Ajusta el tipo según lo que uses para DNI
     allowNull: false,
   })
-  dni!: number;
+  dni!: string;
   @Column
-  phone!: number;
+  phone!: string;
   @Column
   email!: string;
   @Column

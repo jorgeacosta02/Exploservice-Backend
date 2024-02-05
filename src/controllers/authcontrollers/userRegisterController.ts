@@ -10,7 +10,7 @@ const userRegisterController = async (req: Request, res: Response) => {
         firstName,
         lastName,
         dni,
-        healthPlan,
+        position,
         phone,
         email,
         password
@@ -48,7 +48,7 @@ const userRegisterController = async (req: Request, res: Response) => {
             firstName,
             lastName,
             dni,
-            healthPlan,
+            position,
             phone,
             email,
             password: hash
@@ -75,7 +75,7 @@ const userRegisterController = async (req: Request, res: Response) => {
         );
     } catch (error: any) {
         // Envío respuesta de error al cliente
-        res.status(500).json('registerController: ');
+        res.status(500).json({'error': error.message});
     }
 }
 
