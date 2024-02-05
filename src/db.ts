@@ -1,10 +1,11 @@
 // De Chat gpt
 
-// src/db.ts
+// Importa Sequelize y otros módulos necesarios
 import { Sequelize } from 'sequelize-typescript';
 import { UserModel } from './models/UserModel';
-import { TaskModel } from './models/TaskModel'
+import { TaskModel } from './models/TaskModel';
 
+// Crea la instancia de Sequelize
 const sequelize = new Sequelize({
   dialect: 'postgres',
   host: 'localhost',
@@ -14,12 +15,32 @@ const sequelize = new Sequelize({
   models: [UserModel, TaskModel],
 });
 
-// UserModel.hasMany(TaskModel, { foreignKey: 'userId' });
-// TaskModel.belongsTo(UserModel, { foreignKey: 'userId' });
+// Define los modelos y sincroniza la base de datos
+// sequelize.sync({ alter: true })
+//   .then(() => {
+//     console.log('Sincronización de la Base de Datos exitosa');
+//   })
+//   .catch((error) => {
+//     console.error('Error al sincronizar la Base de Datos:', error);
+//   });
 
-sequelize.sync();
+// // Autentica la conexión a la base de datos
+// sequelize.authenticate()
+//   .then(() => {
+//     console.log('Conexión a la Base de Datos exitosa');
+//   })
+//   .catch((error) => {
+//     console.error('Error al conectar a la Base de Datos:', error);
+//   });
 
+// Agrega un gancho (hook) de error a la instancia de Sequelize
+// sequelize.addHook('error', (error) => {
+//   console.error('Error en la instancia de Sequelize:', error);
+// });
+
+// Exporta la instancia de Sequelize
 export default sequelize;
+
 
 
 

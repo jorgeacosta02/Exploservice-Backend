@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 
 // Definir un modelo para la sincronización de Sequelize
 interface ISyncOptions extends SyncOptions {
-  force?: boolean;
+  // force?: false;
 }
 
 // Sincronizar la base de datos y levantar el servidor
@@ -20,7 +20,7 @@ async function main() {
     console.log("Conexión a la Base de Datos exitosa");
 
     // Sincronizar la base de datos
-    const syncOptions: ISyncOptions = { force: true };
+    const syncOptions: ISyncOptions = { force: false };
     await sequelize.sync(syncOptions);
     console.log("La base de datos se ha sincronizado correctamente");
 
