@@ -10,6 +10,8 @@ import './db';
 dotenv.config();
 const port = process.env.PORT || 5000;
 
+console.log('iniciando servidor')
+
 // initializations
 const app = express();
 
@@ -24,6 +26,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
-app.use('/api', router);
+app.use('/', router);
 
 export default  app;

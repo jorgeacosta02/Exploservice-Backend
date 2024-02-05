@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserModel } from "../../db";;
+import { UserModel } from "../../models/UserModel";;
 import bcrypt from 'bcrypt';
 import { createToken } from "../../libs/jwt";
 import { ITokenUserData } from "../../interfaces/userInterfaces";

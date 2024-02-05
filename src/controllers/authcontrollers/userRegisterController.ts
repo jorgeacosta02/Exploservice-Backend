@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserModel } from "../../db";
+import { UserModel } from "../../models/UserModel";
 import bcrypt from 'bcrypt';
 import { createToken } from "../../libs/jwt";
 
@@ -27,7 +27,7 @@ const userRegisterController = async (req: Request, res: Response) => {
     // user check
     const user = await UserModel.findOne({
         where:{
-            dni
+            dni:dni
         }
     });
 

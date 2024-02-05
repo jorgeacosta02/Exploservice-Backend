@@ -1,4 +1,4 @@
-import { sequelize } from "./db";
+import sequelize from "./db";
 import app from "./app";
 import dotenv from "dotenv";
 import { SyncOptions } from 'sequelize';

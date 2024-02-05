@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserModel } from "../../db";
+import { UserModel } from "../../models/UserModel";
 import { IUserDataFromDB } from "../../interfaces/userInterfaces";
 
 

@@ -1,7 +1,6 @@
 // import { DataTypes, Model, ModelCtor } from "sequelize";
 // import { sequelize } from "../db";
 // import UserRole from "../emuns";
-// import { UserPersonModelInterface } from "../interfaces/interfaces";
 // import { IUserData } from "../interfaces/userInterfaces"; 
 
 
@@ -91,7 +90,7 @@ import {
 } from 'sequelize-typescript';
 
 @Table({ tableName: 'users' })
-class UserModel extends Model {
+export class UserModel extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({
@@ -126,4 +125,4 @@ class UserModel extends Model {
   // Otros campos y decoradores según tu modelo
 }
 
-export default UserModel;
+

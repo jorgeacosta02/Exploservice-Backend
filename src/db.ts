@@ -1,39 +1,75 @@
+// De Chat gpt
+
+// src/db.ts
+import { Sequelize } from 'sequelize-typescript';
+import { UserModel } from './models/UserModel';
+import { TaskModel } from './models/TaskModel'
+
+const sequelize = new Sequelize({
+  dialect: 'postgres',
+  host: 'localhost',
+  username: 'postgres',
+  password: 'admin',
+  database: 'exploservice',
+  models: [UserModel, TaskModel],
+});
+
+// UserModel.hasMany(TaskModel, { foreignKey: 'userId' });
+// TaskModel.belongsTo(UserModel, { foreignKey: 'userId' });
+
+sequelize.sync();
+
+export default sequelize;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // DE CraftBeer
+
 // import dotenv from "dotenv";
 // dotenv.config();
 // import { Sequelize } from "sequelize";
 // import fs from "fs";
 // import path from "path";
-// import './models/UserModel'
-// import './models/TaskModel'
 
 // const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY, ENVIRONMENT } = process.env;
 
 // const sequelize = new Sequelize( ENVIRONMENT==="dev"?
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/exploservice`:`${DB_DEPLOY}`,
+//   `postgres://${DB_USER}:admin@${DB_HOST}/craftbeer`:`${DB_DEPLOY}`,
 //   {
 //     logging: false,
 //     native: false,
 //   }
 // );
 
-// // const basename = path.basename(__filename);
+// const basename = path.basename(__filename);
 
 // const modelDefiners: Array<(sequelize: Sequelize) => void> = [];
 
-// const modelsDir = ENVIRONMENT === "dev" ? "models" : "dist/models";
-// const basename = path.basename(__filename);
-
-// fs.readdirSync(path.join(__dirname, modelsDir))
+// fs.readdirSync(path.join(__dirname, "models"))
 //   .filter(
 //     (file) =>
 //       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".ts"
 //   )
 //   .forEach((file) => {
-//     const modelDefiner = require(path.join(__dirname, modelsDir, file));
+//     const modelDefiner = require(path.join(__dirname, "models", file));
 //     modelDefiners.push(modelDefiner.default);
 //   });
 
-// modelDefiners.forEach((modelDefiner) => modelDefiner(sequelize));
+//   Promise.all(modelDefiners.map(modelDefiner => modelDefiner(sequelize)));
+
+//   console.log(modelDefiners)
 
 // const upperCaseModels: Record<string, any> = {};
 // Object.entries(sequelize.models).forEach(([name, model]) => {
@@ -41,11 +77,13 @@
 //   upperCaseModels[upperCaseName] = model;
 // });
 
+// console.log(upperCaseModels)
 
 // // relacionamos
 // const { UserModel, TaskModel} = upperCaseModels; 
 
-// // UserPerson.hasMany(ShoppingHistory)
+// console.log('UserModel in db: ', UserModel);
+// // UserModel.hasMany(TaskModel)
 // // UserPerson.hasMany(Qualification)
 
 // // UserCompany.hasMany(Product)
@@ -59,8 +97,8 @@
 
 
 
-
 // export { UserModel, TaskModel, sequelize}
+
 
 
 
@@ -189,61 +227,72 @@
 // Base Videogames 
 
 
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY} = process.env;
+// import dotenv from 'dotenv';
+// const { Sequelize } = require('sequelize');
+// // const fs = require('fs');
+// // const path = require('path');
+// import UserModel from "./models/UserModel";
+// import TaskModel from "./models/TaskModel";
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`,
-    {
-      logging: false,
-      native: false,
-    }
-);
-
-// const sequelize = new Sequelize(DB_DEPLOY, {
-//   logging: false,
-//   native: false,
-//   dialectOptions:{
-//     // ssl:{
-//     //   require: true,
-//     // },
-//   },
-// });
-
-const basename = path.basename(__filename);
-
-const modelDefiners: any[] = [];
+// dotenv.config();
 
 
-fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file: any) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.ts'))
-  .forEach((file: any) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
-  });
 
-modelDefiners.forEach(model => model(sequelize));
-let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-sequelize.models = Object.fromEntries(capsEntries);
+// const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY} = process.env;
 
-const { UserModel, TaskModel } = sequelize.models;
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`,
+//     {
+//       logging: false,
+//       native: false,
+//     }
+// );
 
-// Videogame.belongsToMany(Genre, { 
-//   through: 'videogame_genre', 
-//   timestamps:false,
-// });
+// // const sequelize = new Sequelize(DB_DEPLOY, {
+// //   logging: false,
+// //   native: false,
+// //   dialectOptions:{
+// //     // ssl:{
+// //     //   require: true,
+// //     // },
+// //   },
+// // });
 
-// Genre.belongsToMany(Videogame, { 
-//   through: 'videogame_genre', 
-//   timestamps:false,
-// });
 
-// export = {
-//   ...sequelize.models,
-//   conn: sequelize,
-// };
 
-export { UserModel, TaskModel, sequelize}
+
+// // Parge comentada:
+// // const basename = path.basename(__filename);
+
+// // const modelDefiners: any[] = [];
+
+
+// // fs.readdirSync(path.join(__dirname, '/models'))
+// //   .filter((file: any) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.ts'))
+// //   .forEach((file: any) => {
+// //     modelDefiners.push(require(path.join(__dirname, '/models', file)));
+// //   });
+
+// // modelDefiners.forEach(model => model(sequelize));
+// // let entries = Object.entries(sequelize.models);
+// // let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+// // sequelize.models = Object.fromEntries(capsEntries);
+
+// // const { UserModel, TaskModel } = sequelize.models;
+
+// // Videogame.belongsToMany(Genre, { 
+// //   through: 'videogame_genre', 
+// //   timestamps:false,
+// // });
+
+// // Genre.belongsToMany(Videogame, { 
+// //   through: 'videogame_genre', 
+// //   timestamps:false,
+// // });
+
+// // export = {
+// //   ...sequelize.models,
+// //   conn: sequelize,
+// // };
+
+// export { UserModel, TaskModel, sequelize}

@@ -58,7 +58,7 @@ import {
   } from 'sequelize-typescript';
   
   @Table({ tableName: 'tasks' })
-  class TaskModel extends Model {
+  export class TaskModel extends Model {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column({
@@ -77,5 +77,5 @@ import {
     // Otros campos y decoradores según tu modelo
   }
   
-  export default TaskModel;
+
   
