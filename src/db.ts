@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { UserModel } from './models/UserModel';
 import { TaskModel } from './models/TaskModel';
 import { LocationModel } from './models/locationModel';
-import { ElementModel } from './models/elementModel';
+import { ElementModel } from './models/articleModel';
 
 const sequelize = new Sequelize({
   dialect: 'postgres',

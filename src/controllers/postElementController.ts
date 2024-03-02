@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ElementModel } from "../models/elementModel";
+import { ElementModel } from "../models/articleModel";
 import { LocationModel } from "../models/locationModel";
 
 

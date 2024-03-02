@@ -7,8 +7,8 @@ import {
   DataType,
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'locations' })
-export class LocationModel extends Model {
+@Table({ tableName: 'article' })
+export class ArticleModel extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({
@@ -22,5 +22,5 @@ export class LocationModel extends Model {
   name!: string;
 
   @Column
-  location!: string; // Opcional, puede ser la ubicación física del almacén
+  description!: string;
 }
