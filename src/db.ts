@@ -2,7 +2,9 @@ import { Sequelize } from 'sequelize-typescript';
 import { UserModel } from './models/UserModel';
 import { TaskModel } from './models/TaskModel';
 import { LocationModel } from './models/locationModel';
-import { ElementModel } from './models/articleModel';
+import { ArticleModel } from './models/articleModel';
+import { InventoryModel } from './models/inventoryModel';
+import { InventoryMovementModel } from './models/inventoryMovementModel';
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -14,7 +16,9 @@ const sequelize = new Sequelize({
     UserModel,
     TaskModel,
     LocationModel,
-    ElementModel
+    ArticleModel,
+    InventoryModel,
+    InventoryMovementModel
   ],
 });
 

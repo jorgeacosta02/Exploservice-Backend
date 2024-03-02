@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { ElementModel } from "../models/articleModel";
+import { ArticleModel } from "../models/articleModel";
 import { LocationModel } from "../models/locationModel";
 
 
-export const postElementController = async (req:Request, res:Response) => {
+export const postArticleController = async (req:Request, res:Response) => {
     const {
         name,
         description,
@@ -12,7 +12,7 @@ export const postElementController = async (req:Request, res:Response) => {
     } = req.body;
     
     try{
-        const newElement = await  ElementModel.create({name,description,amount,locationId});
+        const newElement = await  ArticleModel.create({name,description,amount,locationId});
         
         if(!newElement){
             return res.status(400).json('Error creating the element');

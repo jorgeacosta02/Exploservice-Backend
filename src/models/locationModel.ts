@@ -22,5 +22,5 @@ export class LocationModel extends Model {
   name!: string;
 
   @Column
-  location!: string; // Opcional, puede ser la ubicación física del almacén
+  description!: string; // Opcional, puede ser la ubicación física del almacén
 }
