@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { postArticleController } from "../controllers/postArticleController";
 
-const elementRouter = Router()
+const articleRouter = Router()
 
-elementRouter.post('/', postArticleController)
+articleRouter.post('/', postArticleController)
 
-export  default elementRouter; 
+export  default articleRouter; 

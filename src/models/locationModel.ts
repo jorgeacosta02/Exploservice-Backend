@@ -7,7 +7,7 @@ import {
   DataType,
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'locations' })
+@Table({ tableName: 'location' })
 export class LocationModel extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
