@@ -31,10 +31,13 @@ export class ElementModel extends Model {
     type: DataType.INTEGER, // Ajusta el tipo según lo que uses para DNI
     allowNull: false,
   })
-  amount!: string;
+  amount!: number;
 
   @ForeignKey(() => LocationModel) // Define la clave foránea
-  @Column
+  @Column({
+    type: DataType.UUID, // Especifica manualmente el tipo de datos para locationId
+    allowNull: false,
+  })
   locationId!: any;
 
   @BelongsTo(() => LocationModel)

@@ -10,7 +10,12 @@ const sequelize = new Sequelize({
   username: 'postgres',
   password: 'admin',
   database: 'exploservice',
-  models: [UserModel, TaskModel, LocationModel, ElementModel],
+  models: [
+    UserModel,
+    TaskModel,
+    LocationModel,
+    ElementModel
+  ],
 });
 
 export default sequelize;
