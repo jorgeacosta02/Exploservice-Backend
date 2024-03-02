@@ -7,8 +7,8 @@ import {
     DataType,
   } from 'sequelize-typescript';
   
-  @Table({ tableName: 'element' })
-  export class ElementModel extends Model {
+  @Table({ tableName: 'location' })
+  export class LocationModel extends Model {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column({
@@ -20,13 +20,9 @@ import {
   
     @Column
     name!: string;
+    
     @Column
     description!: string;
-    @Column({
-      type: DataType.INTEGER, // Ajusta el tipo según lo que uses para DNI
-      allowNull: false,
-    })
-    amount!: string;
   }
   
 
