@@ -20,6 +20,7 @@ const sequelize = new Sequelize({
     InventoryModel,
     InventoryMovementModel
   ],
+  logging: false
 });
 
 export default sequelize;

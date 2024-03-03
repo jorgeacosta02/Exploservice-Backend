@@ -1,5 +1,6 @@
 import sequelize from "./db";
 import app from "./app";
+import dataBase from "./helpers/dataBase";
 import dotenv from "dotenv";
 import { SyncOptions } from 'sequelize';
 import { Request, Response, NextFunction, ErrorRequestHandler } from "express";
@@ -17,12 +18,18 @@ async function main() {
   try {
     // Verificar la conexión a la base de datos
     await sequelize.authenticate();
-    console.log("Conexión a la Base de Datos exitosa");
+    console.log("Conexión a la Base de Datos exitosa ahora");
 
     // Sincronizar la base de datos
-    const syncOptions: ISyncOptions = { force: false };
-    await sequelize.sync(syncOptions);
-    console.log("La base de datos se ha sincronizado correctamente");
+    const syncOptions: ISyncOptions = { force: true };
+    await sequelize.sync(syncOptions)
+    .then(()=>{
+      dataBase(),
+      app.listen(port, () => {
+        console.log(`Server listening now on port ${port}`);
+      });
+    })
+    console.log("La base de datos se ha sincronizado correctamente ahora");
 
   } catch (error) {
     console.error("Error al conectarse a la Base de Datos:", error);
@@ -38,6 +45,3 @@ app.use((err:Error, req:Request, res:Response, next:NextFunction) => {
   res.status(500).send("Internal Server Error");
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
