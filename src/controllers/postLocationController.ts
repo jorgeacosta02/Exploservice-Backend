@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { LocationModel } from "../models/locationModel";
 
 export const postLocationController = async (req: Request, res: Response) => {
-    console.log('dentro de postLocationController');
     const { name, description } = req.body;
     try {
         const newLocation = await LocationModel.create({

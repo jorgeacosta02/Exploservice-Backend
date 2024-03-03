@@ -43,14 +43,14 @@ import {
       type: DataType.UUID,
       allowNull: false,
     })
-    originWarehouseId!: any;
+    originLocationId!: any;
   
     @ForeignKey(() => LocationModel)
     @Column({
       type: DataType.UUID,
       allowNull: false,
     })
-    destinationWarehouseId!: any;
+    destinationLocationId!: any;
   
     @BelongsTo(() => ArticleModel)
     product!: ArticleModel;
