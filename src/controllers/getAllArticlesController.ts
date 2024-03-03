@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { ArticleModel } from "../models/articleModel";
 
-const getAllArticlesController = async (req:Request, res:Response) =>{
+export const getAllArticlesController = async (req:Request, res:Response) =>{
     try {
-        const allArticles = ArticleModel.findAll();
+        const allArticles = await ArticleModel.findAll();
         if(!allArticles) return res.status(404).json({msg:"No articles found"});
         else return res.status(200).json(allArticles);
         
@@ -13,4 +13,3 @@ const getAllArticlesController = async (req:Request, res:Response) =>{
       }
 }
 
-export  default getAllArticlesController; 

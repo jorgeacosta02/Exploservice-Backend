@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { LocationModel } from "../models/locationModel";
 
-const getAllLocationsController = async (req:Request, res:Response) =>{
+export const getAllLocationsController = async (req:Request, res:Response) =>{
     try {
-        const allLocations = LocationModel.findAll();
+        const allLocations = await LocationModel.findAll();
         if(!allLocations) return res.status(404).json({msg:"No locations found"});
         else return res.status(200).json(allLocations);
         
@@ -13,4 +13,3 @@ const getAllLocationsController = async (req:Request, res:Response) =>{
       }
 }
 
-export  default getAllLocationsController; 

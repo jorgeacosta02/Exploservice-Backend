@@ -11,7 +11,7 @@ export const postLocationController = async (req: Request, res: Response) => {
         if (!newLocation) {
             return res.status(400).json({ error: "Failed to create location" });
         } else {
-            return res.status(201).json({ message: 'Successfully created location', data: newLocation });
+            return res.status(201).json(newLocation);
         }
     } catch (error: any) {
         console.error("Error creating location:", error.message);
