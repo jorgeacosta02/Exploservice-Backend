@@ -10,7 +10,7 @@ import { ArticleModel } from './articleModel';
 import { LocationModel } from './locationModel';
 
 @Table({ tableName: 'inventory' })
-export class InventoryModel extends Model<InventoryModel> {
+export class InventoryModel extends Model {
     @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
     amount!: number;
 

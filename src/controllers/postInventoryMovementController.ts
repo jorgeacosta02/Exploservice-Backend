@@ -23,27 +23,56 @@ export const postInventoryMovementController = async (req: Request, res: Respons
         switch (movementType) {
             case 'entrada':
                 await Promise.all([
-                    InventoryModel.increment('amount', { by: quantity, where: { articleId, locationId: destinationLocationId } }),
-                    InventoryModel.increment('amount', { by: quantity, where: { articleId, locationId: originLocationId } })
+                    updateInventory(articleId, originLocationId, -quantity), // Restar cantidad del origen
+                    updateInventory(articleId, destinationLocationId, quantity) // Sumar cantidad al destino
                 ]);
                 break;
             case 'salida':
-                await InventoryModel.decrement('amount', { by: quantity, where: { articleId, locationId: originLocationId } });
-                await InventoryModel.decrement('amount', { by: quantity, where: { articleId, locationId: destinationLocationId } });
+                await Promise.all([
+                    updateInventory(articleId, originLocationId, quantity), // Restar cantidad del origen
+                    updateInventory(articleId, destinationLocationId, -quantity) // Restar cantidad del destino
+                ]);
                 break;
             case 'transferencia':
                 await Promise.all([
-                    InventoryModel.increment('amount', { by: quantity, where: { articleId, locationId: destinationLocationId } }),
-                    InventoryModel.decrement('amount', { by: quantity, where: { articleId, locationId: originLocationId } })
+                    updateInventory(articleId, originLocationId, -quantity), // Restar cantidad del origen
+                    updateInventory(articleId, destinationLocationId, quantity) // Sumar cantidad al destino
                 ]);
                 break;
             default:
                 break;
         }
 
-        return res.status(201).json({ message: 'Successfully created inventory movement', data: newInventoryMovement });
+        // Obtener el inventario actualizado
+        const updatedInventory = await InventoryModel.findAll();
+        
+        return res.status(201).json({ message: 'Successfully created inventory movement', data: newInventoryMovement, inventory: updatedInventory });
     } catch (error: any) {
         console.error("Error creating inventory movement:", error.message);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
+
+// Función para actualizar el inventario
+async function updateInventory(
+        articleId: any,
+        locationId: any,
+        quantity: number
+    )
+    {
+        const existingInventory = await InventoryModel.findOne({
+            where: { articleId, locationId }
+        });
+
+        if (existingInventory) {
+            // Si ya existe un registro para este artículo y ubicación, actualizar la cantidad
+            await existingInventory.update({ amount: existingInventory.amount + quantity });
+        } else {
+            // Si no existe, crear un nuevo registro
+            await InventoryModel.create({
+                articleId,
+                locationId,
+                amount: quantity
+            });
+        }
+    }
