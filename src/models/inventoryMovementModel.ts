@@ -11,7 +11,7 @@ import {
   import { ArticleModel } from './articleModel';
   import { LocationModel } from './locationModel';
   
-  @Table({ tableName: 'inventory_movements' })
+  @Table({ tableName: 'inventoryMovements' })
   export class InventoryMovementModel extends Model {
     @PrimaryKey
     @Default(DataType.UUIDV4)
@@ -36,7 +36,7 @@ import {
       type: DataType.UUID,
       allowNull: false,
     })
-    productId!: any;
+    articleId!: any;
   
     @ForeignKey(() => LocationModel)
     @Column({

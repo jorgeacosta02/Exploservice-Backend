@@ -16,14 +16,14 @@ export class InventoryModel extends Model<InventoryModel> {
 
     @ForeignKey(() => ArticleModel)
     @Column({ type: DataType.UUID, allowNull: false })
-    productId!: any;
+    articleId!: any;
 
     @ForeignKey(() => LocationModel)
     @Column({ type: DataType.UUID, allowNull: false })
     locationId!: any;
 
     @BelongsTo(() => ArticleModel)
-    product!: ArticleModel;
+    article!: ArticleModel;
 
     @BelongsTo(() => LocationModel)
     location!: LocationModel;

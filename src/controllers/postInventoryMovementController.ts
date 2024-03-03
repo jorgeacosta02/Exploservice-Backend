@@ -3,13 +3,13 @@ import { InventoryMovementModel } from "../models/inventoryMovementModel";
 import { InventoryModel } from "../models/inventoryModel";
 
 export const postInventoryMovementController = async (req: Request, res: Response) => {
-    const { movementType, productId, originLocationId, destinationLocationId, quantity } = req.body;
+    const { movementType, articleId, originLocationId, destinationLocationId, quantity } = req.body;
 
     try {
         // Crear el movimiento de inventario
         const newInventoryMovement = await InventoryMovementModel.create({
             movementType,
-            productId,
+            articleId,
             originLocationId,
             destinationLocationId,
             quantity
@@ -23,18 +23,18 @@ export const postInventoryMovementController = async (req: Request, res: Respons
         switch (movementType) {
             case 'entrada':
                 await Promise.all([
-                    InventoryModel.increment('amount', { by: quantity, where: { productId, locationId: destinationLocationId } }),
-                    InventoryModel.increment('amount', { by: quantity, where: { productId, locationId: originLocationId } })
+                    InventoryModel.increment('amount', { by: quantity, where: { articleId, locationId: destinationLocationId } }),
+                    InventoryModel.increment('amount', { by: quantity, where: { articleId, locationId: originLocationId } })
                 ]);
                 break;
             case 'salida':
-                await InventoryModel.decrement('amount', { by: quantity, where: { productId, locationId: originLocationId } });
-                await InventoryModel.decrement('amount', { by: quantity, where: { productId, locationId: destinationLocationId } });
+                await InventoryModel.decrement('amount', { by: quantity, where: { articleId, locationId: originLocationId } });
+                await InventoryModel.decrement('amount', { by: quantity, where: { articleId, locationId: destinationLocationId } });
                 break;
             case 'transferencia':
                 await Promise.all([
-                    InventoryModel.increment('amount', { by: quantity, where: { productId, locationId: destinationLocationId } }),
-                    InventoryModel.decrement('amount', { by: quantity, where: { productId, locationId: originLocationId } })
+                    InventoryModel.increment('amount', { by: quantity, where: { articleId, locationId: destinationLocationId } }),
+                    InventoryModel.decrement('amount', { by: quantity, where: { articleId, locationId: originLocationId } })
                 ]);
                 break;
             default:
