@@ -11,7 +11,7 @@ import {
   import { ArticleModel } from './articleModel';
   import { LocationModel } from './locationModel';
   
-  @Table({ tableName: 'inventoryMovements' })
+  @Table({ tableName: 'inventorymovements' })
   export class InventoryMovementModel extends Model {
     @PrimaryKey
     @Default(DataType.UUIDV4)

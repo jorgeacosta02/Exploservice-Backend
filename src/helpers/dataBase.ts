@@ -30,7 +30,10 @@ const dataBase = async () => {
             description: '' // Aquí debería ser 'description' en lugar de 'Description'
         },
     ];
-    const location = [
+
+    const insertedArticles:any = await ArticleModel.bulkCreate(articles);
+
+    const locations = [
         {
             name: 'Central',
             description: 'Albardón' // Aquí debería ser 'description' en lugar de 'Description'
@@ -57,14 +60,46 @@ const dataBase = async () => {
         },
     ];
 
-    try {
-        const insertedArticles = await ArticleModel.bulkCreate(articles);
-        const insertedLocations = await LocationModel.bulkCreate(location);
-        console.log("Registros de artículo insertados correctamente:", insertedArticles);
-        console.log("Registros de locaciones insertados correctamente:", insertedLocations);
-    } catch (error) {
-        console.error("Error al insertar registros de artículo:", error);
-    }
+    const insertedLocations:any = await LocationModel.bulkCreate(locations);
+
+
+    const inventoryMovement:any = [
+        {
+            movementType: 'entrada',
+            quantity: 10,
+            articleId: insertedArticles[0].id,
+            originLocationId: insertedLocations[1].id,
+            destinationLocationId: insertedLocations[0].id
+        },
+        {
+            movementType: 'transferencia',
+            quantity: 2,
+            articleId: insertedArticles[0].id,
+            originLocationId: insertedLocations[0].id,
+            destinationLocationId: insertedLocations[3].id
+        },
+        {
+            movementType: 'transferencia',
+            quantity: 3,
+            articleId: insertedArticles[0].id,
+            originLocationId: insertedLocations[0].id,
+            destinationLocationId: insertedLocations[4].id
+        },
+        {
+            movementType: 'transferencia',
+            quantity: 1,
+            articleId: insertedArticles[0].id,
+            originLocationId: insertedLocations[3].id,
+            destinationLocationId: insertedLocations[5].id
+        },
+    ];
+
+    const insertedInventoryMovements:any = await InventoryMovementModel.bulkCreate(inventoryMovement);
+      
+    console.log("Registros de artículo insertados correctamente:", insertedArticles);
+    console.log("Registros de locaciones insertados correctamente:", insertedLocations);
+    console.log("Registros de movimientos insertados correctamente:", insertedInventoryMovements);
+
 };
 
 export default dataBase;
