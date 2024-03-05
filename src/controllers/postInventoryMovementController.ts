@@ -3,7 +3,13 @@ import { InventoryMovementModel } from "../models/inventoryMovementModel";
 import { InventoryModel } from "../models/inventoryModel";
 
 export const postInventoryMovementController = async (req: Request, res: Response) => {
-    const { movementType, articleId, originLocationId, destinationLocationId, quantity } = req.body;
+    const {
+        movementType,
+        articleId,
+        originLocationId,
+        destinationLocationId,
+        quantity
+    } = req.body;
 
     try {
         // Crear el movimiento de inventario
