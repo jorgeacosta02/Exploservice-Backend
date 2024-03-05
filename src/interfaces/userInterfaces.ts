@@ -3,15 +3,15 @@ import { Document } from "mongoose";
 
 // Interface for saving user on db
 export interface IUserData extends Document {
-    id: string,
+    // id: string,
     firstName: string;
     lastName: string;
     dni: string;
     phone: string;
     email: string;
     password: string;
-    position: string;
-    active: boolean;
+    // position: string;
+    // active: boolean;
     role: string;
 }
 
@@ -24,8 +24,8 @@ export interface IUserDataFromDB {
     phone: string;
     email: string;
     password: string;
-    position: string;
-    active: boolean;
+    // position: string;
+    // active: boolean;
     role: string;
 }
 
@@ -58,9 +58,9 @@ export interface ITokenUserData {
     lastName: string;
     dni: string;
     phone: string;
-    email: string;
-    position: string;
-    active: boolean;
+    // email: string;
+    // position: string;
+    // active: boolean;
     role: string;
 }
   

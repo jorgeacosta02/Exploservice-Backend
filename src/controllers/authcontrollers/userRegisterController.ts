@@ -10,10 +10,12 @@ const userRegisterController = async (req: Request, res: Response) => {
         firstName,
         lastName,
         dni,
-        position,
+        birthDae,
+        // position,
         phone,
         email,
-        password
+        password,
+        role
     } = req.body;
 
     // validations    
@@ -48,10 +50,11 @@ const userRegisterController = async (req: Request, res: Response) => {
             firstName,
             lastName,
             dni,
-            position,
+            // birthDate,
             phone,
             email,
-            password: hash
+            password: hash,
+            role,
         });
         // Grabo el usuaro en la base de datos y lo coloco en una variable.
         const savedUser = await newUser.save();
@@ -61,10 +64,11 @@ const userRegisterController = async (req: Request, res: Response) => {
             firstName: savedUser.firstName,
             lastName: savedUser.lastName,
             dni: savedUser.dni,
+            // birthDate: savedUser.birthDate,
             phone: savedUser.phone,
-            email: savedUser.email,
-            position: savedUser.position,
-            active: savedUser.active,
+  
+            // position: savedUser.position,
+            // active: savedUser.active,
             role: savedUser.role
         });
         // Coloco una cookie con el token en la respuesta

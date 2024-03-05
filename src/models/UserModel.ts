@@ -27,16 +27,22 @@ export class UserModel extends Model {
     allowNull: false,
   })
   dni!: string;
+
   @Column
   phone!: string;
+
   @Column
   email!: string;
+
   @Column
   password!: string;
+
   @Column
   position!: string;
+
   @Column
   active!: boolean;
+  
   @Column
   role!: string;
 

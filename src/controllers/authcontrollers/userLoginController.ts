@@ -38,9 +38,9 @@ const userLogInController = async (req: Request, res: Response) => {
             lastName: user.lastName,
             dni: user.dni,
             phone: user.phone,
-            email: user.email,
-            position: user.position,
-            active: user.active,
+            // email: user.email,
+            // position: user.position,
+            // active: user.active,
             role: user.role
         }
         console.log('tokenData en loginController', tokenData);
