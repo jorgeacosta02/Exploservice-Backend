@@ -4,6 +4,10 @@ import { InventoryMovementModel } from "../models/inventoryMovementModel";
 import { LocationModel } from "../models/locationModel";
 
 const dataBase = async () => {
+
+
+
+    // Registros de artículos
     const articles = [
         {
             name: 'Barra T45',
@@ -33,6 +37,9 @@ const dataBase = async () => {
 
     const insertedArticles:any = await ArticleModel.bulkCreate(articles);
 
+
+
+    // Registros de locaciones
     const locations = [
         {
             name: 'Central',
@@ -63,6 +70,8 @@ const dataBase = async () => {
     const insertedLocations:any = await LocationModel.bulkCreate(locations);
 
 
+
+    // Registros de movimientos de inventario
     const inventoryMovement:any = [
         {
             movementType: 'entrada',
@@ -95,6 +104,13 @@ const dataBase = async () => {
     ];
 
     const insertedInventoryMovements:any = await InventoryMovementModel.bulkCreate(inventoryMovement);
+
+
+    
+
+    // Inventory
+
+
       
     // console.log("Registros de artículo insertados correctamente:", insertedArticles);
     // console.log("Registros de locaciones insertados correctamente:", insertedLocations);
