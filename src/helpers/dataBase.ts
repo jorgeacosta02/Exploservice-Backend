@@ -96,9 +96,9 @@ const dataBase = async () => {
 
     const insertedInventoryMovements:any = await InventoryMovementModel.bulkCreate(inventoryMovement);
       
-    console.log("Registros de artículo insertados correctamente:", insertedArticles);
-    console.log("Registros de locaciones insertados correctamente:", insertedLocations);
-    console.log("Registros de movimientos insertados correctamente:", insertedInventoryMovements);
+    // console.log("Registros de artículo insertados correctamente:", insertedArticles);
+    // console.log("Registros de locaciones insertados correctamente:", insertedLocations);
+    // console.log("Registros de movimientos insertados correctamente:", insertedInventoryMovements);
 
 };
 
