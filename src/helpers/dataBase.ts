@@ -10,27 +10,45 @@ const dataBase = async () => {
     // Registros de artículos
     const articles = [
         {
-            name: 'Barra T45',
+            name: 'Barra de perforación',
+            brand: 'Sandvik',
+            feature1: 'T38',
+            feature2: '6m',
             description: '' // Aquí debería ser 'description' en lugar de 'Description'
         },
         {
-            name: 'Barra T38',
+            name: 'Barra de perforación',
+            brand: 'FRD',
+            feature1: 'T45',
+            feature2: '2m',
             description: '' // Aquí debería ser 'description' en lugar de 'Description'
         },
         {
-            name: 'Barra T51',
+            name: 'Barra de inicio',
+            brand: 'Sandvik',
+            feature1: 'T51',
+            feature2: '',
             description: '' // Aquí debería ser 'description' en lugar de 'Description'
         },
         {
-            name: 'Broca T45',
+            name: 'Barra de inicio',
+            brand: 'FRD',
+            feature1: 'T45',
+            feature2: '',
             description: '' // Aquí debería ser 'description' en lugar de 'Description'
         },
         {
-            name: 'Broca T51',
+            name: 'Broca',
+            brand: 'Sandvik',
+            feature1: 'T45',
+            feature2: 'Lisa',
             description: '' // Aquí debería ser 'description' en lugar de 'Description'
         },
         {
-            name: 'Broca T38',
+            name: 'Broca',
+            brand: 'Atlas',
+            feature1: 'T38',
+            feature2: 'Estriada',
             description: '' // Aquí debería ser 'description' en lugar de 'Description'
         },
     ];
@@ -43,27 +61,27 @@ const dataBase = async () => {
     const locations = [
         {
             name: 'Central',
-            description: 'Albardón' // Aquí debería ser 'description' en lugar de 'Description'
+            description: 'Albardón'
         },
         {
             name: 'Prveedor',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            description: ''
         },
         {
             name: 'Descarte',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            description: ''
         },
         {
             name: 'Tocota',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            description: ''
         },
         {
             name: 'Barker',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            description: ''
         },
         {
             name: 'La Garrapata',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            description: ''
         },
     ];
 

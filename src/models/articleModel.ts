@@ -18,8 +18,20 @@ export class ArticleModel extends Model {
   })
   id!: any;
 
-  @Column
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
   name!: string;
+  
+  @Column
+  brand!: string;
+  
+  @Column
+  feature1!: string;
+  
+  @Column
+  feature2!: string;
 
   @Column
   description!: string;

@@ -5,13 +5,19 @@ import { ArticleModel } from "../models/articleModel";
 export const postArticleController = async (req:Request, res:Response) => {
     const {
         name,
+        brand,
+        feature1,
+        feature2,
         description,
     } = req.body;
     
     try{
         const newArticle = await ArticleModel.create({
             name,
-            description
+            brand,
+            feature1,
+            feature2,
+            description,
         });
         
         if(!newArticle){
