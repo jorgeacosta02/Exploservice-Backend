@@ -28,11 +28,8 @@ export class ArticleModel extends Model {
   brand!: string;
   
   @Column
-  feature1!: string;
+  group1!: string;
   
   @Column
-  feature2!: string;
-
-  @Column
-  description!: string;
+  group2!: string;
 }

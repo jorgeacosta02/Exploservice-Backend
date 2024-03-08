@@ -19,4 +19,5 @@ router.use('/inventory-movement', inventoryMovementRouter)
 router.use('/inventory', inventoryRouter)
 
 
+
 export default router
