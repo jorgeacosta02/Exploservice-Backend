@@ -12,49 +12,42 @@ const dataBase = async () => {
         {
             name: 'Barra de perforación',
             brand: 'Sandvik',
-            feature1: 'T38',
-            feature2: '6m',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            group1: 'T38',
+            group2: '6m',
         },
         {
             name: 'Barra de perforación',
             brand: 'FRD',
-            feature1: 'T45',
-            feature2: '2m',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            group1: 'T45',
+            group2: '2m',
         },
         {
             name: 'Barra de inicio',
             brand: 'Sandvik',
-            feature1: 'T51',
-            feature2: '',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            group1: 'T51',
+            group2: '',
         },
         {
             name: 'Barra de inicio',
             brand: 'FRD',
-            feature1: 'T45',
-            feature2: '',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            group1: 'T45',
+            group2: '',
         },
         {
             name: 'Broca',
             brand: 'Sandvik',
-            feature1: 'T45',
-            feature2: 'Lisa',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            group1: 'T45',
+            group2: 'Lisa',
         },
         {
             name: 'Broca',
             brand: 'Atlas',
-            feature1: 'T38',
-            feature2: 'Estriada',
-            description: '' // Aquí debería ser 'description' en lugar de 'Description'
+            group1: 'T38',
+            group2: 'Estriada',
         },
     ];
 
     const insertedArticles:any = await ArticleModel.bulkCreate(articles);
-
 
 
     // Registros de locaciones
