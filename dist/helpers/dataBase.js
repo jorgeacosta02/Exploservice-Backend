@@ -10,30 +10,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const articleModel_1 = require("../models/articleModel");
-const inventoryMovementModel_1 = require("../models/inventoryMovementModel");
 const locationModel_1 = require("../models/locationModel");
 const dataBase = () => __awaiter(void 0, void 0, void 0, function* () {
     const articles = [
         {
-            name: 'Barra de perforación',
-            brand: 'Sandvik',
+            name: 'Barra perf',
+            brand: 'Sandivk',
             group1: 'T38',
             group2: '6m',
         },
         {
-            name: 'Barra de perforación',
+            name: 'Barra perf',
             brand: 'FRD',
             group1: 'T45',
             group2: '2m',
         },
         {
-            name: 'Barra de inicio',
+            name: 'Barra ini',
             brand: 'Sandvik',
             group1: 'T51',
             group2: '',
         },
         {
-            name: 'Barra de inicio',
+            name: 'Barra ini',
             brand: 'FRD',
             group1: 'T45',
             group2: '',
@@ -49,6 +48,12 @@ const dataBase = () => __awaiter(void 0, void 0, void 0, function* () {
             brand: 'Atlas',
             group1: 'T38',
             group2: 'Estriada',
+        },
+        {
+            name: 'Fil aire',
+            brand: 'filt',
+            group1: 'x29',
+            group2: 'www',
         },
     ];
     const insertedArticles = yield articleModel_1.ArticleModel.bulkCreate(articles);
@@ -79,37 +84,6 @@ const dataBase = () => __awaiter(void 0, void 0, void 0, function* () {
         },
     ];
     const insertedLocations = yield locationModel_1.LocationModel.bulkCreate(locations);
-    const inventoryMovement = [
-        {
-            movementType: 'entrada',
-            quantity: 10,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[1].id,
-            destinationLocationId: insertedLocations[0].id
-        },
-        {
-            movementType: 'transferencia',
-            quantity: 2,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[0].id,
-            destinationLocationId: insertedLocations[3].id
-        },
-        {
-            movementType: 'transferencia',
-            quantity: 3,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[0].id,
-            destinationLocationId: insertedLocations[4].id
-        },
-        {
-            movementType: 'transferencia',
-            quantity: 1,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[3].id,
-            destinationLocationId: insertedLocations[5].id
-        },
-    ];
-    const insertedInventoryMovements = yield inventoryMovementModel_1.InventoryMovementModel.bulkCreate(inventoryMovement);
 });
 exports.default = dataBase;
 //# sourceMappingURL=dataBase.js.map

@@ -10,25 +10,25 @@ const dataBase = async () => {
     // Registros de artículos
     const articles = [
         {
-            name: 'Barra de perforación',
-            brand: 'Sandvik',
+            name: 'Barra perf',
+            brand: 'Sandivk',
             group1: 'T38',
             group2: '6m',
         },
         {
-            name: 'Barra de perforación',
+            name: 'Barra perf',
             brand: 'FRD',
             group1: 'T45',
             group2: '2m',
         },
         {
-            name: 'Barra de inicio',
+            name: 'Barra ini',
             brand: 'Sandvik',
             group1: 'T51',
             group2: '',
         },
         {
-            name: 'Barra de inicio',
+            name: 'Barra ini',
             brand: 'FRD',
             group1: 'T45',
             group2: '',
@@ -45,6 +45,13 @@ const dataBase = async () => {
             group1: 'T38',
             group2: 'Estriada',
         },
+        {
+            name: 'Fil aire',
+            brand: 'filt',
+            group1: 'x29',
+            group2: 'www',
+        },
+      
     ];
 
     const insertedArticles:any = await ArticleModel.bulkCreate(articles);
@@ -83,38 +90,38 @@ const dataBase = async () => {
 
 
     // Registros de movimientos de inventario
-    const inventoryMovement:any = [
-        {
-            movementType: 'entrada',
-            quantity: 10,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[1].id,
-            destinationLocationId: insertedLocations[0].id
-        },
-        {
-            movementType: 'transferencia',
-            quantity: 2,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[0].id,
-            destinationLocationId: insertedLocations[3].id
-        },
-        {
-            movementType: 'transferencia',
-            quantity: 3,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[0].id,
-            destinationLocationId: insertedLocations[4].id
-        },
-        {
-            movementType: 'transferencia',
-            quantity: 1,
-            articleId: insertedArticles[0].id,
-            originLocationId: insertedLocations[3].id,
-            destinationLocationId: insertedLocations[5].id
-        },
-    ];
+    // const inventoryMovement:any = [
+    //     {
+    //         movementType: 'entrada',
+    //         quantity: 10,
+    //         articleId: insertedArticles[0].id,
+    //         originLocationId: insertedLocations[1].id,
+    //         destinationLocationId: insertedLocations[0].id
+    //     },
+    //     {
+    //         movementType: 'transferencia',
+    //         quantity: 2,
+    //         articleId: insertedArticles[0].id,
+    //         originLocationId: insertedLocations[0].id,
+    //         destinationLocationId: insertedLocations[3].id
+    //     },
+    //     {
+    //         movementType: 'transferencia',
+    //         quantity: 3,
+    //         articleId: insertedArticles[0].id,
+    //         originLocationId: insertedLocations[0].id,
+    //         destinationLocationId: insertedLocations[4].id
+    //     },
+    //     {
+    //         movementType: 'transferencia',
+    //         quantity: 1,
+    //         articleId: insertedArticles[0].id,
+    //         originLocationId: insertedLocations[3].id,
+    //         destinationLocationId: insertedLocations[5].id
+    //     },
+    // ];
 
-    const insertedInventoryMovements:any = await InventoryMovementModel.bulkCreate(inventoryMovement);
+    // const insertedInventoryMovements:any = await InventoryMovementModel.bulkCreate(inventoryMovement);
 
 
     
