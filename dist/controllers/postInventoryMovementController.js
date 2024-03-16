@@ -26,22 +26,20 @@ const postInventoryMovementController = (req, res) => __awaiter(void 0, void 0, 
             return res.status(400).json({ error: "Failed to create inventory movement" });
         }
         switch (movementType) {
-            case 'entrada':
+            case 'Entrada':
                 yield Promise.all([
-                    updateInventory(articleId, originLocationId, -quantity),
-                    updateInventory(articleId, destinationLocationId, quantity)
+                    updateInventory(articleId, destinationLocationId, +quantity)
                 ]);
                 break;
-            case 'salida':
+            case 'Salida':
                 yield Promise.all([
-                    updateInventory(articleId, originLocationId, quantity),
                     updateInventory(articleId, destinationLocationId, -quantity)
                 ]);
                 break;
-            case 'transferencia':
+            case 'Transferencia':
                 yield Promise.all([
                     updateInventory(articleId, originLocationId, -quantity),
-                    updateInventory(articleId, destinationLocationId, quantity)
+                    updateInventory(articleId, destinationLocationId, +quantity)
                 ]);
                 break;
             default:

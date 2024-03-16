@@ -27,17 +27,27 @@ __decorate([
     __metadata("design:type", Object)
 ], InventoryModel.prototype, "id", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false, defaultValue: 0 }),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    }),
     __metadata("design:type", Number)
 ], InventoryModel.prototype, "amount", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => articleModel_1.ArticleModel),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, allowNull: false }),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.UUID,
+        allowNull: false
+    }),
     __metadata("design:type", Object)
 ], InventoryModel.prototype, "articleId", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => locationModel_1.LocationModel),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, allowNull: false }),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.UUID,
+        allowNull: false
+    }),
     __metadata("design:type", Object)
 ], InventoryModel.prototype, "locationId", void 0);
 __decorate([

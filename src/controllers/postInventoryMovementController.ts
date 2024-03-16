@@ -27,22 +27,22 @@ export const postInventoryMovementController = async (req: Request, res: Respons
 
         // Actualizar el inventario según el tipo de movimiento
         switch (movementType) {
-            case 'entrada':
+            case 'Entrada':
                 await Promise.all([
-                    updateInventory(articleId, originLocationId, -quantity), // Restar cantidad del origen
-                    updateInventory(articleId, destinationLocationId, quantity) // Sumar cantidad al destino
+                    // updateInventory(articleId, originLocationId, -quantity), // Restar cantidad del origen
+                    updateInventory(articleId, destinationLocationId, +quantity) // Sumar cantidad al destino
                 ]);
                 break;
-            case 'salida':
+            case 'Salida':
                 await Promise.all([
-                    updateInventory(articleId, originLocationId, quantity), // Restar cantidad del origen
+                    // updateInventory(articleId, originLocationId, quantity), // Restar cantidad del origen
                     updateInventory(articleId, destinationLocationId, -quantity) // Restar cantidad del destino
                 ]);
                 break;
-            case 'transferencia':
+            case 'Transferencia':
                 await Promise.all([
                     updateInventory(articleId, originLocationId, -quantity), // Restar cantidad del origen
-                    updateInventory(articleId, destinationLocationId, quantity) // Sumar cantidad al destino
+                    updateInventory(articleId, destinationLocationId, +quantity) // Sumar cantidad al destino
                 ]);
                 break;
             default:

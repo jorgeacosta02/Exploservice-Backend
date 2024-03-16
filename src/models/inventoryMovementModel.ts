@@ -23,10 +23,10 @@ import {
     id!: any;
   
     @Column({
-      type: DataType.ENUM('entrada', 'salida', 'transferencia'),
+      type: DataType.ENUM('Entrada', 'Salida', 'Transferencia'),
       allowNull: false,
     })
-    movementType!: 'entrada' | 'salida' | 'transferencia';
+    movementType!: 'Entrada' | 'Salida' | 'Transferencia';
   
     @Column
     quantity!: number;

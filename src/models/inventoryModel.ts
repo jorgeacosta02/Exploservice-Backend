@@ -23,15 +23,25 @@ export class InventoryModel extends Model {
     })
     id!: any;
 
-    @Column({ type: DataType.INTEGER, allowNull: false, defaultValue: 0 })
+    @Column({ 
+      type: DataType.INTEGER, 
+      allowNull: false, 
+      defaultValue: 0 
+    })
     amount!: number;
 
     @ForeignKey(() => ArticleModel)
-    @Column({ type: DataType.UUID, allowNull: false })
+    @Column({ 
+      type: DataType.UUID, 
+      allowNull: false 
+    })
     articleId!: any;
 
     @ForeignKey(() => LocationModel)
-    @Column({ type: DataType.UUID, allowNull: false })
+    @Column({ 
+      type: DataType.UUID, 
+      allowNull: false 
+    })
     locationId!: any;
 
     @BelongsTo(() => ArticleModel)
