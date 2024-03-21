@@ -44,12 +44,13 @@ const userLogInController = (req, res) => __awaiter(void 0, void 0, void 0, func
             lastName: user.lastName,
             dni: user.dni,
             phone: user.phone,
+            email: user.email,
+            active: user.active,
             role: user.role
         };
         console.log('tokenData en loginController', tokenData);
         const token = yield (0, jwt_1.createToken)(tokenData);
         console.log('token en loginController', token);
-        res.cookie('token', token);
         console.log(user);
         res.status(201).json({ user: tokenData });
     }

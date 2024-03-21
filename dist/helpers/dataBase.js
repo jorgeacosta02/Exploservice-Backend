@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const articleModel_1 = require("../models/articleModel");
 const locationModel_1 = require("../models/locationModel");
+const UserModel_1 = require("../models/UserModel");
 const dataBase = () => __awaiter(void 0, void 0, void 0, function* () {
     const articles = [
         {
@@ -84,6 +85,19 @@ const dataBase = () => __awaiter(void 0, void 0, void 0, function* () {
         },
     ];
     const insertedLocations = yield locationModel_1.LocationModel.bulkCreate(locations);
+    const users = [
+        {
+            firstName: 'Jorge',
+            lastName: 'Acosta',
+            dni: '23616110',
+            phone: '2646730581',
+            email: 'jorgeacostadeleon@yahoo.com',
+            password: '123456',
+            active: true,
+            role: 'user',
+        },
+    ];
+    const insertedUsers = yield UserModel_1.UserModel.bulkCreate(users);
 });
 exports.default = dataBase;
 //# sourceMappingURL=dataBase.js.map

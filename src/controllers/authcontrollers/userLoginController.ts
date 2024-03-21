@@ -38,9 +38,9 @@ const userLogInController = async (req: Request, res: Response) => {
             lastName: user.lastName,
             dni: user.dni,
             phone: user.phone,
-            // email: user.email,
+            email: user.email,
             // position: user.position,
-            // active: user.active,
+            active: user.active,
             role: user.role
         }
         console.log('tokenData en loginController', tokenData);
@@ -48,7 +48,7 @@ const userLogInController = async (req: Request, res: Response) => {
         const token = await createToken(tokenData);
         console.log('token en loginController', token);
         // Coloco una cookie con el token en la respuesta
-        res.cookie('token', token);
+        // res.cookie('token', token);
 
 
         // Envío la respuesta de éxito al cliente

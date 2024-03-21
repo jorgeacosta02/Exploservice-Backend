@@ -2,6 +2,7 @@ import { ArticleModel } from "../models/articleModel";
 import { InventoryModel } from "../models/inventoryModel";
 import { InventoryMovementModel } from "../models/inventoryMovementModel";
 import { LocationModel } from "../models/locationModel";
+import { UserModel } from "../models/UserModel";
 
 const dataBase = async () => {
 
@@ -88,6 +89,22 @@ const dataBase = async () => {
     const insertedLocations:any = await LocationModel.bulkCreate(locations);
 
 
+    const users = [
+        {
+            firstName: 'Jorge',
+            lastName: 'Acosta',
+            dni: '23616110',
+            // birthDate,
+            phone: '2646730581',
+            email: 'jorgeacostadeleon@yahoo.com',
+            password: '123456',
+            active: true,
+            role: 'user',
+        },
+    ]
+
+
+    const insertedUsers:any = await UserModel.bulkCreate(users);
 
     // Registros de movimientos de inventario
     // const inventoryMovement:any = [

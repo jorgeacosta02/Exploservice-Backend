@@ -55,9 +55,10 @@ const userRegisterController = (req, res) => __awaiter(void 0, void 0, void 0, f
             lastName: savedUser.lastName,
             dni: savedUser.dni,
             phone: savedUser.phone,
+            email: savedUser.email,
+            active: savedUser.active,
             role: savedUser.role
         });
-        res.cookie('token', token);
         res.status(201).json(`El usuario ${savedUser.firstName} ${savedUser.lastName} fue creado con éxito!!`);
     }
     catch (error) {

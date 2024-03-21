@@ -58,9 +58,9 @@ export interface ITokenUserData {
     lastName: string;
     dni: string;
     phone: string;
-    // email: string;
+    email: string;
     // position: string;
-    // active: boolean;
+    active: boolean;
     role: string;
 }
   

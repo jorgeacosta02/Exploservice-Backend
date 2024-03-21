@@ -66,13 +66,13 @@ const userRegisterController = async (req: Request, res: Response) => {
             dni: savedUser.dni,
             // birthDate: savedUser.birthDate,
             phone: savedUser.phone,
-  
+            email: savedUser.email, 
             // position: savedUser.position,
-            // active: savedUser.active,
+            active: savedUser.active,
             role: savedUser.role
         });
         // Coloco una cookie con el token en la respuesta
-        res.cookie('token', token);
+        // res.cookie('token', token);
         // Envío la respuesta de éxito al cliente
         res.status(201).json(
             `El usuario ${savedUser.firstName} ${savedUser.lastName} fue creado con éxito!!`
